@@ -1,62 +1,911 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="light">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="refresh" content="0; url=https://wa.me/message/HTG3SXB7T5BMM1" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Acerte i Saúde Farma</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Acerte i Saúde Farma — Catálogo</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #f7f8f7;
+      --surface: #ffffff;
+      --surface-alt: #f0f4f1;
+      --border: #e2e8e4;
+      --heading: #162d20;
+      --body: #2e3d33;
+      --muted: #7a8c80;
+      --accent: #2a5c3f;
+      --accent-light: #e6f0e9;
+      --tag-bg: #dceee2;
+      --tag-text: #1c4a2c;
+      --wa: #25d366;
+      --wa-dark: #1da851;
+      --placeholder-bg: #eaf0ec;
+      --placeholder-icon: #b0c4b8;
+      --shadow-sm: 0 1px 3px rgba(22,45,32,.07), 0 1px 2px rgba(22,45,32,.04);
+      --shadow-md: 0 4px 12px rgba(22,45,32,.10), 0 1px 4px rgba(22,45,32,.06);
+      --radius: 14px;
+      --radius-sm: 9px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f1a13;
+        --surface: #192619;
+        --surface-alt: #1e2e1f;
+        --border: #2a3d2c;
+        --heading: #d6ead9;
+        --body: #a8c0ad;
+        --muted: #5e7a64;
+        --accent: #4caf72;
+        --accent-light: #1a2e1c;
+        --tag-bg: #1c3522;
+        --tag-text: #7ed49a;
+        --wa: #25d366;
+        --wa-dark: #1da851;
+        --placeholder-bg: #1e2e1f;
+        --placeholder-icon: #3a5040;
+        --shadow-sm: 0 1px 3px rgba(0,0,0,.3);
+        --shadow-md: 0 4px 16px rgba(0,0,0,.4);
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #0f1a13; --surface: #192619; --surface-alt: #1e2e1f;
+      --border: #2a3d2c; --heading: #d6ead9; --body: #a8c0ad;
+      --muted: #5e7a64; --accent: #4caf72; --accent-light: #1a2e1c;
+      --tag-bg: #1c3522; --tag-text: #7ed49a;
+      --placeholder-bg: #1e2e1f; --placeholder-icon: #3a5040;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,.3); --shadow-md: 0 4px 16px rgba(0,0,0,.4);
+    }
+    :root[data-theme="light"] {
+      --bg: #f7f8f7; --surface: #ffffff; --surface-alt: #f0f4f1;
+      --border: #e2e8e4; --heading: #162d20; --body: #2e3d33;
+      --muted: #7a8c80; --accent: #2a5c3f; --accent-light: #e6f0e9;
+      --tag-bg: #dceee2; --tag-text: #1c4a2c;
+      --placeholder-bg: #eaf0ec; --placeholder-icon: #b0c4b8;
+      --shadow-sm: 0 1px 3px rgba(22,45,32,.07), 0 1px 2px rgba(22,45,32,.04);
+      --shadow-md: 0 4px 12px rgba(22,45,32,.10), 0 1px 4px rgba(22,45,32,.06);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--body);
+      max-width: 430px;
+      margin: 0 auto;
+      min-height: 100dvh;
+      padding-bottom: 100px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 20px 14px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .header-inner {
       display: flex;
       align-items: center;
+      justify-content: space-between;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .brand-icon {
+      width: 36px; height: 36px;
+      background: var(--accent);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .brand-icon svg { width: 20px; height: 20px; }
+    .brand-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--heading);
+      letter-spacing: -.2px;
+      line-height: 1.2;
+    }
+    .brand-sub {
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: .4px;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+    .theme-toggle {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      width: 34px; height: 34px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      color: var(--muted);
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 28px 20px 24px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .hero h1 {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--heading);
+      line-height: 1.2;
+      letter-spacing: -.4px;
+      text-wrap: balance;
+      margin-bottom: 8px;
+    }
+    .hero p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* ── NAV PILLS ── */
+    .nav-scroll {
+      padding: 14px 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .nav-scroll::-webkit-scrollbar { display: none; }
+    .nav-pills {
+      display: flex;
+      gap: 8px;
+      padding: 0 20px;
+      width: max-content;
+    }
+    .pill {
+      padding: 7px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+      border: 1.5px solid var(--border);
+      background: var(--surface);
+      color: var(--muted);
+      text-decoration: none;
+      transition: background .15s, color .15s, border-color .15s;
+    }
+    .pill.active, .pill:hover {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    /* ── SECTIONS ── */
+    .catalog { padding: 0 16px; }
+
+    .section {
+      margin-top: 28px;
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      padding: 0 4px;
+    }
+    .section-title-group { display: flex; flex-direction: column; gap: 2px; }
+    .section-eyebrow {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .6px;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .section-title {
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--heading);
+      letter-spacing: -.3px;
+    }
+    .section-count {
+      font-size: 12px;
+      color: var(--muted);
+      background: var(--surface-alt);
+      padding: 3px 9px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+
+    /* ── CARDS ── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+    }
+    .card-img {
+      aspect-ratio: 1 / 1;
+      background: var(--placeholder-bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       justify-content: center;
-      min-height: 100vh;
-      background: linear-gradient(135deg, #25d366, #128c7e);
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      color: white;
+      gap: 6px;
+      position: relative;
+    }
+    .card-img svg {
+      width: 32px; height: 32px;
+      color: var(--placeholder-icon);
+    }
+    .card-img-label {
+      font-size: 10px;
+      color: var(--placeholder-icon);
+      font-weight: 500;
+      letter-spacing: .3px;
+    }
+    .card-body {
+      padding: 10px 11px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+    }
+    .card-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--heading);
+      line-height: 1.3;
+      letter-spacing: -.1px;
+    }
+    .card-mg {
+      display: inline-block;
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      letter-spacing: .2px;
+      align-self: flex-start;
+    }
+    .card-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      margin-top: 2px;
+    }
+    .card-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .card-meta-label {
+      font-size: 9.5px;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      color: var(--muted);
+      font-weight: 600;
+      width: 32px;
+      flex-shrink: 0;
+    }
+    .card-meta-value {
+      font-size: 11.5px;
+      color: var(--body);
+      font-weight: 500;
+    }
+    .card-cta {
+      margin-top: 8px;
+      width: 100%;
+      padding: 8px 0;
+      background: var(--accent);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      letter-spacing: .2px;
       text-align: center;
+      text-decoration: none;
+      display: block;
     }
-    .container { padding: 2rem; }
-    .logo {
-      width: 80px;
-      height: 80px;
-      background: white;
-      border-radius: 50%;
+
+    /* ── DIVIDER ── */
+    .section-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 28px 4px 0;
+    }
+
+    /* ── FLOATING WA BUTTON ── */
+    .fab {
+      position: fixed;
+      bottom: calc(24px + env(safe-area-inset-bottom));
+      right: 20px;
+      z-index: 200;
       display: flex;
       align-items: center;
-      justify-content: center;
-      margin: 0 auto 1.5rem;
+      gap: 10px;
+      background: var(--wa);
+      color: #fff;
+      padding: 13px 18px 13px 14px;
+      border-radius: 50px;
+      box-shadow: 0 4px 20px rgba(37,211,102,.45);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: -.1px;
+      transition: transform .15s, box-shadow .15s;
     }
-    .logo svg { width: 50px; height: 50px; }
-    h1 { font-size: 1.4rem; margin-bottom: 0.5rem; }
-    p { opacity: 0.85; font-size: 0.95rem; }
-    .spinner {
-      width: 24px;
-      height: 24px;
-      border: 3px solid rgba(255,255,255,0.4);
-      border-top-color: white;
-      border-radius: 50%;
-      margin: 1.5rem auto 0;
-      animation: spin 0.8s linear infinite;
+    .fab:active { transform: scale(.96); }
+    .fab svg { width: 22px; height: 22px; flex-shrink: 0; }
+    @media (hover: hover) {
+      .fab:hover {
+        background: var(--wa-dark);
+        box-shadow: 0 6px 24px rgba(37,211,102,.55);
+        transform: translateY(-1px);
+      }
     }
-    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 32px 20px 20px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; animation: none !important; }
+    }
   </style>
-  <script>
-    window.location.replace("https://wa.me/message/HTG3SXB7T5BMM1");
-  </script>
 </head>
 <body>
-  <div class="container">
-    <div class="logo">
-      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="16" cy="16" r="16" fill="#25d366"/>
-        <path d="M16 7C11.03 7 7 11.03 7 16c0 1.77.49 3.42 1.34 4.83L7 25l4.3-1.32A9 9 0 0 0 16 25c4.97 0 9-4.03 9-9s-4.03-9-9-9zm4.44 12.44c-.19.53-1.1 1.02-1.51 1.08-.38.06-.87.08-1.4-.09-.32-.1-.74-.24-1.27-.47-2.23-.96-3.68-3.2-3.79-3.35-.11-.15-.9-1.2-.9-2.28s.57-1.62.77-1.84c.2-.22.44-.28.59-.28l.42.01c.14 0 .32-.05.5.38.19.44.64 1.57.7 1.68.06.11.1.24.02.38-.08.14-.12.23-.24.35-.12.12-.25.27-.36.36-.12.1-.24.2-.1.4.14.2.61.9 1.31 1.46.9.75 1.66.98 1.9 1.09.24.11.38.09.52-.05.14-.14.59-.69.75-.93.16-.24.32-.2.54-.12.22.08 1.4.66 1.64.78.24.12.4.18.46.28.06.1.06.58-.13 1.11z" fill="white"/>
-      </svg>
+
+  <header>
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/>
+          </svg>
+        </div>
+        <div>
+          <div class="brand-name">Acerte i Saúde Farma</div>
+          <div class="brand-sub">Catálogo de Produtos</div>
+        </div>
+      </div>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema">
+        <span id="theme-icon">☀️</span>
+      </button>
     </div>
-    <h1>Acerte i Saúde Farma</h1>
-    <p>Redirecionando para o WhatsApp...</p>
-    <div class="spinner"></div>
+  </header>
+
+  <!-- Nav Pills -->
+  <div class="nav-scroll">
+    <nav class="nav-pills">
+      <a class="pill active" href="#tirzepatida">Tirzepatida</a>
+      <a class="pill" href="#retatrutida">Retatrutida</a>
+      <a class="pill" href="#peptideos">Peptídeos</a>
+      <a class="pill" href="#testosterona">Testosterona</a>
+    </nav>
   </div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-eyebrow">Farmácia Especializada</div>
+    <h1>Produtos de alta qualidade para sua saúde</h1>
+    <p>Compostos manipulados, peptídeos e hormônios com rastreabilidade e laudos de qualidade.</p>
+  </div>
+
+  <div class="catalog">
+
+    <!-- ── TIRZEPATIDA ── -->
+    <section class="section" id="tirzepatida">
+      <div class="section-header">
+        <div class="section-title-group">
+          <span class="section-eyebrow">GLP-1 / GIP</span>
+          <span class="section-title">Tirzepatida</span>
+        </div>
+        <span class="section-count">4 itens</span>
+      </div>
+      <div class="cards-grid">
+
+        <div class="card">
+          <div class="card-img">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
+            <span class="card-img-label">Foto</span>
+          </div>
+          <div class="card-body">
+            <span class="card-name">Tirzepatida Injetável</span>
+            <span class="card-mg">2,5 mg</span>
+            <div class="card-meta">
+              <div class="card-meta-row">
+                <span class="card-meta-label">Marca</span>
+                <span class="card-meta-value">—</span>
+              </div>
+              <div class="card-meta-row">
+                <span class="card-meta-label">Lab</span>
+                <span class="card-meta-value">—</span>
+              </div>
+            </div>
+            <a href="https://wa.me/message/HTG3SXB7T5BMM1" class="card-cta">Consultar</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
+            <span class="card-img-label">Foto</span>
+          </div>
+          <div class="card-body">
+            <span class="card-name">Tirzepatida Injetável</span>
+            <span class="card-mg">5 mg</span>
+            <div class="card-meta">
+              <div class="card-meta-row">
+                <span class="card-meta-label">Marca</span>
+                <span class="card-meta-value">—</span>
+              </div>
+              <div class="card-meta-row">
+                <span class="card-meta-label">Lab</span>
+                <span class="card-meta-value">—</span>
+              </div>
+            </div>
+            <a href="https://wa.me/message/HTG3SXB7T5BMM1" class="card-cta">Consultar</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
+            <span class="card-img-label">Foto</span>
+          </div>
+          <div class="card-body">
+            <span class="card-name">Tirzepatida Injetável</span>
+            <span class="card-mg">7,5 mg</span>
+            <div class="card-meta">
+              <div class="card-meta-row">
+                <span class="card-meta-label">Marca</span>
+                <span class="card-meta-value">—</span>
+              </div>
+              <div class="card-meta-row">
+                <span class="card-meta-label">Lab</span>
+                <span class="card-meta-value">—</span>
+              </div>
+            </div>
+            <a href="https://wa.me/message/HTG3SXB7T5BMM1" class="card-cta">Consultar</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
+            <span class="card-img-label">Foto</span>
+          </div>
+          <div class="card-body">
+            <span class="card-name">Tirzepatida Injetável</span>
+            <span class="card-mg">10 mg</span>
+            <div class="card-meta">
+              <div class="card-meta-row">
+                <span class="card-meta-label">Marca</span>
+                <span class="card-meta-value">—</span>
+              </div>
+              <div class="card-meta-row">
+                <span class="card-meta-label">Lab</span>
+                <span class="card-meta-value">—</span>
+              </div>
+            </div>
+            <a href="https://wa.me/message/HTG3SXB7T5BMM1" class="card-cta">Consultar</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ── RETATRUTIDA ── -->
+    <section class="section" id="retatrutida">
+      <div class="section-header">
+        <div class="section-title-group">
+          <span class="section-eyebrow">GLP-1 / GIP / Glucagon</span>
+          <span class="section-title">Retatrutida</span>
+        </div>
+        <span class="section-count">4 itens</span>
+      </div>
+      <div class="cards-grid">
+
+        <div class="card">
+          <div class="card-img">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
+            <span class="card-img-label">Foto</span>
+          </div>
+          <div class="card-body">
+            <span class="card-name">Retatrutida Injetável</span>
+            <span class="card-mg">2 mg</span>
+            <div class="card-meta">
+              <div class="card-meta-row">
+                <span class="card-meta-label">Marca</span>
+                <span class="card-meta-value">—</span>
+              </div>
+              <div class="card-meta-row">
+                <span class="card-meta-label">Lab</span>
+                <span class="card-meta-value">—</span>
+              </div>
+            </div>
+            <a href="https://wa.me/message/HTG3SXB7T5BMM1" class="card-cta">Consultar</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
+            <span class="card-img-label">Foto</span>
+          </div>
+          <div class="card-body">
+            <span class="card-name">Retatrutida Injetável</span>
+            <span class="card-mg">4 mg</span>
+            <div class="card-meta">
+              <div class="card-meta-row">
+                <span class="card-meta-label">Marca</span>
+                <span class="card-meta-value">—</span>
+              </div>
+              <div class="card-meta-row">
+                <span class="card-meta-label">Lab</span>
+                <span class="card-meta-value">—</span>
+              </div>
+            </div>
+            <a href="https://wa.me/message/HTG3SXB7T5BMM1" class="card-cta">Consultar</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
+            <span class="card-img-label">Foto</span>
+          </div>
+          <div class="card-body">
+            <span class="card-name">Retatrutida Injetável</span>
+            <span class="card-mg">8 mg</span>
+            <div class="card-meta">
+              <div class="card-meta-row">
+                <span class="card-meta-label">Marca</span>
+                <span class="card-meta-value">—</span>
+              </div>
+              <div class="card-meta-row">
+                <span class="card-meta-label">Lab</span>
+                <span class="card-meta-value">—</span>
+              </div>
+            </div>
+            <a href="https://wa.me/message/HTG3SXB7T5BMM1" class="card-cta">Consultar</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
+            <span class="card-img-label">Foto</span>
+          </div>
+          <div class="card-body">
+            <span class="card-name">Retatrutida Injetável</span>
+            <span class="card-mg">12 mg</span>
+            <div class="card-meta">
+              <div class="card-meta-row">
+                <span class="card-meta-label">Marca</span>
+                <span class="card-meta-value">—</span>
+              </div>
+              <div class="card-meta-row">
+                <span class="card-meta-label">Lab</span>
+                <span class="card-meta-value">—</span>
+              </div>
+            </div>
+            <a href="https://wa.me/message/HTG3SXB7T5BMM1" class="card-cta">Consultar</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ── PEPTÍDEOS ── -->
+    <section class="section" id="peptideos">
+      <div class="section-header">
+        <div class="section-title-group">
+          <span class="section-eyebrow">Bioativos</span>
+          <span class="section-title">Peptídeos</span>
+        </div>
+        <span class="section-count">4 itens</span>
+      </div>
+      <div class="cards-grid">
+
+        <div class="card">
+          <div class="card-img">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
+            <span class="card-img-label">Foto</span>
+          </div>
+          <div class="card-body">
+            <span class="card-name">BPC-157</span>
+            <span class="card-mg">—</span>
+            <div class="card-meta">
+              <div class="card-meta-row">
+                <span class="card-meta-label">Marca</span>
+                <span class="card-meta-value">—</span>
+              </div>
+              <div class="card-meta-row">
+                <span class="card-meta-label">Lab</span>
+                <span class="card-meta-value">—</span>
+              </div>
+            </div>
+            <a href="https://wa.me/message/HTG3SXB7T5BMM1" class="card-cta">Consultar</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
+            <span class="card-img-label">Foto</span>
+          </div>
+          <div class="card-body">
+            <span class="card-name">TB-500</span>
+            <span class="card-mg">—</span>
+            <div class="card-meta">
+              <div class="card-meta-row">
+                <span class="card-meta-label">Marca</span>
+                <span class="card-meta-value">—</span>
+              </div>
+              <div class="card-meta-row">
+                <span class="card-meta-label">Lab</span>
+                <span class="card-meta-value">—</span>
+              </div>
+            </div>
+            <a href="https://wa.me/message/HTG3SXB7T5BMM1" class="card-cta">Consultar</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
+            <span class="card-img-label">Foto</span>
+          </div>
+          <div class="card-body">
+            <span class="card-name">CJC-1295</span>
+            <span class="card-mg">—</span>
+            <div class="card-meta">
+              <div class="card-meta-row">
+                <span class="card-meta-label">Marca</span>
+                <span class="card-meta-value">—</span>
+              </div>
+              <div class="card-meta-row">
+                <span class="card-meta-label">Lab</span>
+                <span class="card-meta-value">—</span>
+              </div>
+            </div>
+            <a href="https://wa.me/message/HTG3SXB7T5BMM1" class="card-cta">Consultar</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
+            <span class="card-img-label">Foto</span>
+          </div>
+          <div class="card-body">
+            <span class="card-name">Ipamorelin</span>
+            <span class="card-mg">—</span>
+            <div class="card-meta">
+              <div class="card-meta-row">
+                <span class="card-meta-label">Marca</span>
+                <span class="card-meta-value">—</span>
+              </div>
+              <div class="card-meta-row">
+                <span class="card-meta-label">Lab</span>
+                <span class="card-meta-value">—</span>
+              </div>
+            </div>
+            <a href="https://wa.me/message/HTG3SXB7T5BMM1" class="card-cta">Consultar</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ── TESTOSTERONA ── -->
+    <section class="section" id="testosterona">
+      <div class="section-header">
+        <div class="section-title-group">
+          <span class="section-eyebrow">Hormônio</span>
+          <span class="section-title">Testosterona</span>
+        </div>
+        <span class="section-count">4 itens</span>
+      </div>
+      <div class="cards-grid">
+
+        <div class="card">
+          <div class="card-img">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
+            <span class="card-img-label">Foto</span>
+          </div>
+          <div class="card-body">
+            <span class="card-name">Testosterona Cipionato</span>
+            <span class="card-mg">—</span>
+            <div class="card-meta">
+              <div class="card-meta-row">
+                <span class="card-meta-label">Marca</span>
+                <span class="card-meta-value">—</span>
+              </div>
+              <div class="card-meta-row">
+                <span class="card-meta-label">Lab</span>
+                <span class="card-meta-value">—</span>
+              </div>
+            </div>
+            <a href="https://wa.me/message/HTG3SXB7T5BMM1" class="card-cta">Consultar</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
+            <span class="card-img-label">Foto</span>
+          </div>
+          <div class="card-body">
+            <span class="card-name">Testosterona Enantato</span>
+            <span class="card-mg">—</span>
+            <div class="card-meta">
+              <div class="card-meta-row">
+                <span class="card-meta-label">Marca</span>
+                <span class="card-meta-value">—</span>
+              </div>
+              <div class="card-meta-row">
+                <span class="card-meta-label">Lab</span>
+                <span class="card-meta-value">—</span>
+              </div>
+            </div>
+            <a href="https://wa.me/message/HTG3SXB7T5BMM1" class="card-cta">Consultar</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
+            <span class="card-img-label">Foto</span>
+          </div>
+          <div class="card-body">
+            <span class="card-name">Testosterona Propionato</span>
+            <span class="card-mg">—</span>
+            <div class="card-meta">
+              <div class="card-meta-row">
+                <span class="card-meta-label">Marca</span>
+                <span class="card-meta-value">—</span>
+              </div>
+              <div class="card-meta-row">
+                <span class="card-meta-label">Lab</span>
+                <span class="card-meta-value">—</span>
+              </div>
+            </div>
+            <a href="https://wa.me/message/HTG3SXB7T5BMM1" class="card-cta">Consultar</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
+            <span class="card-img-label">Foto</span>
+          </div>
+          <div class="card-body">
+            <span class="card-name">Testosterona Gel</span>
+            <span class="card-mg">—</span>
+            <div class="card-meta">
+              <div class="card-meta-row">
+                <span class="card-meta-label">Marca</span>
+                <span class="card-meta-value">—</span>
+              </div>
+              <div class="card-meta-row">
+                <span class="card-meta-label">Lab</span>
+                <span class="card-meta-value">—</span>
+              </div>
+            </div>
+            <a href="https://wa.me/message/HTG3SXB7T5BMM1" class="card-cta">Consultar</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </div><!-- /catalog -->
+
+  <footer>
+    © 2025 Acerte i Saúde Farma · Todos os direitos reservados
+  </footer>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/message/HTG3SXB7T5BMM1" class="fab" aria-label="Falar no WhatsApp">
+    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16 3C8.82 3 3 8.82 3 16c0 2.35.65 4.56 1.78 6.45L3 29l6.77-1.76A13 13 0 0 0 16 29c7.18 0 13-5.82 13-13S23.18 3 16 3zm5.92 16.59c-.25.7-1.47 1.36-2.02 1.44-.5.08-1.16.11-1.87-.12-.43-.14-.99-.32-1.69-.63-2.97-1.28-4.9-4.27-5.05-4.47-.15-.2-1.2-1.6-1.2-3.04s.76-2.16 1.03-2.45c.27-.3.58-.37.78-.37l.56.01c.18 0 .43-.07.67.51.25.59.85 2.09.93 2.24.08.15.13.32.03.5-.1.19-.15.3-.3.47-.16.16-.33.36-.47.48-.16.13-.32.27-.14.54.19.27.81 1.2 1.74 1.94 1.19 1 2.21 1.31 2.53 1.45.32.14.5.12.69-.07.19-.19.78-.91 1-1.24.21-.32.43-.26.72-.16.29.1 1.86.88 2.18 1.04.32.16.54.24.62.37.08.14.08.77-.17 1.46z" fill="white"/>
+    </svg>
+    Falar no WhatsApp
+  </a>
+
+  <script>
+    function toggleTheme() {
+      const root = document.documentElement;
+      const icon = document.getElementById('theme-icon');
+      const current = root.getAttribute('data-theme');
+      if (current === 'dark') {
+        root.setAttribute('data-theme', 'light');
+        icon.textContent = '☀️';
+      } else {
+        root.setAttribute('data-theme', 'dark');
+        icon.textContent = '🌙';
+      }
+    }
+
+    // Sync icon with OS preference on load
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.getElementById('theme-icon').textContent = '🌙';
+    }
+
+    // Smooth scroll for nav pills
+    document.querySelectorAll('.pill').forEach(pill => {
+      pill.addEventListener('click', function(e) {
+        document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+
+    // Highlight active nav on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const pills = document.querySelectorAll('.pill');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          pills.forEach(p => p.classList.remove('active'));
+          const active = document.querySelector(`.pill[href="#${entry.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-30% 0px -60% 0px' });
+    sections.forEach(s => observer.observe(s));
+  </script>
 </body>
 </html>
