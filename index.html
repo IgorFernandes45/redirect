@@ -312,12 +312,23 @@
       padding: 18px 14px 16px;
       text-align: center;
     }
+    @keyframes numGlow {
+      0%   { text-shadow: none; color: var(--accent); }
+      40%  { text-shadow: 0 0 18px rgba(31,168,78,.9), 0 0 40px rgba(31,168,78,.5); color: #5ef588; }
+      70%  { text-shadow: 0 0 28px rgba(31,168,78,1),  0 0 60px rgba(31,168,78,.6), 0 0 90px rgba(31,168,78,.25); color: #7ffaa0; }
+      100% { text-shadow: 0 0 12px rgba(31,168,78,.7), 0 0 30px rgba(31,168,78,.4); color: #4de87a; }
+    }
     .stat-num {
-      font-size: 34px; font-weight: 900;
+      font-size: 36px; font-weight: 900;
       color: var(--accent);
       letter-spacing: -.5px; line-height: 1;
       margin-bottom: 8px;
       font-variant-numeric: tabular-nums;
+      animation: numGlow 2.6s ease-out forwards;
+      animation-play-state: paused;
+    }
+    .stat-num.counting {
+      animation-play-state: running;
     }
     .stat-label {
       font-size: 12px; font-weight: 700; color: #fff;
@@ -900,13 +911,13 @@
             </div>
             <div class="rcard-divider"></div>
             <div class="rcard-vs">VS</div>
-            <div class="rcard-result-badge">Em breve</div>
+            <div class="rcard-result-badge">−13 kg<br><span style="font-size:9px;font-weight:600;opacity:.9">5 meses</span></div>
           </div>
           <div class="rcard-info">
             <div class="rcard-icon">⭐</div>
             <div>
               <div class="rcard-name">Cliente 2</div>
-              <div class="rcard-meta">Resultado em atualização</div>
+              <div class="rcard-meta">13 kg perdidos · 5 meses de uso</div>
             </div>
             <div class="rcard-tag">Tirzepatida</div>
           </div>
@@ -925,13 +936,13 @@
             </div>
             <div class="rcard-divider"></div>
             <div class="rcard-vs">VS</div>
-            <div class="rcard-result-badge">Em breve</div>
+            <div class="rcard-result-badge">−10 kg<br><span style="font-size:9px;font-weight:600;opacity:.9">3 meses</span></div>
           </div>
           <div class="rcard-info">
             <div class="rcard-icon">🔥</div>
             <div>
               <div class="rcard-name">Cliente 3</div>
-              <div class="rcard-meta">Resultado em atualização</div>
+              <div class="rcard-meta">10 kg perdidos · 3 meses de uso</div>
             </div>
             <div class="rcard-tag">Tirzepatida</div>
           </div>
@@ -950,13 +961,13 @@
             </div>
             <div class="rcard-divider"></div>
             <div class="rcard-vs">VS</div>
-            <div class="rcard-result-badge">Em breve</div>
+            <div class="rcard-result-badge">−28 kg<br><span style="font-size:9px;font-weight:600;opacity:.9">6 meses</span></div>
           </div>
           <div class="rcard-info">
             <div class="rcard-icon">🌟</div>
             <div>
               <div class="rcard-name">Cliente 4</div>
-              <div class="rcard-meta">Resultado em atualização</div>
+              <div class="rcard-meta">28 kg perdidos · 6 meses de uso</div>
             </div>
             <div class="rcard-tag">Tirzepatida</div>
           </div>
@@ -975,13 +986,13 @@
             </div>
             <div class="rcard-divider"></div>
             <div class="rcard-vs">VS</div>
-            <div class="rcard-result-badge">Em breve</div>
+            <div class="rcard-result-badge">−20 kg<br><span style="font-size:9px;font-weight:600;opacity:.9">6 meses</span></div>
           </div>
           <div class="rcard-info">
             <div class="rcard-icon">✨</div>
             <div>
               <div class="rcard-name">Cliente 5</div>
-              <div class="rcard-meta">Resultado em atualização</div>
+              <div class="rcard-meta">20 kg perdidos · 6 meses de uso</div>
             </div>
             <div class="rcard-tag">Tirzepatida</div>
           </div>
@@ -1170,8 +1181,9 @@
           var target  = parseFloat(el.dataset.target);
           var suffix  = el.dataset.suffix || '';
           var decimal = target % 1 !== 0;
+          el.classList.add('counting');
           var start   = null;
-          var dur     = 1600;
+          var dur     = 2600;
           function step(ts) {
             if (!start) start = ts;
             var prog  = Math.min((ts - start) / dur, 1);
