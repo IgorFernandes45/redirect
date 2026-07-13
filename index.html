@@ -283,91 +283,135 @@
     .pcard-cta svg { width: 17px; height: 17px; }
 
     /* ═══════════════════════════════════
+       STATS SECTION
+    ═══════════════════════════════════ */
+    .stats-sec {
+      background: linear-gradient(160deg, var(--hero) 0%, #0e2418 100%);
+      padding: 40px 20px 44px;
+      position: relative; overflow: hidden;
+    }
+    .stats-sec::before {
+      content: ''; position: absolute; top: -80px; left: -80px;
+      width: 260px; height: 260px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(31,168,78,.14) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .stats-sec .sec-eyebrow { color: var(--wa); }
+    .stats-sec .sec-title  { color: #fff; margin-bottom: 5px; }
+    .stats-sec .sec-desc   { color: rgba(255,255,255,.5); margin-bottom: 28px; }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 11px;
+    }
+    .stat-card {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 14px;
+      padding: 18px 14px 16px;
+      text-align: center;
+    }
+    .stat-num {
+      font-size: 34px; font-weight: 900;
+      color: var(--accent);
+      letter-spacing: -.5px; line-height: 1;
+      margin-bottom: 8px;
+      font-variant-numeric: tabular-nums;
+    }
+    .stat-label {
+      font-size: 12px; font-weight: 700; color: #fff;
+      line-height: 1.35; margin-bottom: 4px;
+    }
+    .stat-sub {
+      font-size: 10.5px; color: rgba(255,255,255,.45);
+      font-weight: 500;
+    }
+
+    /* ═══════════════════════════════════
        RESULTS SECTION
     ═══════════════════════════════════ */
     .results {
-      padding: 40px 20px 36px;
+      padding: 36px 16px 32px;
       background: var(--surface);
       border-top: 1px solid var(--border);
     }
-    .results .sec-header { padding: 0 0 20px; }
+    .results .sec-header { padding: 0 4px 20px; }
 
-    .result-cards { display: flex; flex-direction: column; gap: 16px; }
+    .result-cards { display: flex; flex-direction: column; gap: 18px; }
 
     .rcard {
       background: var(--bg);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       overflow: hidden;
+      box-shadow: var(--shadow);
     }
     .rcard-photos {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0;
       position: relative;
-      height: 220px;
+      height: 260px;
     }
     .rcard-photo {
-      position: relative;
-      overflow: hidden;
-      background: #e8ede9;
-      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+      background: #d8e4da;
     }
     .rcard-photo img {
       width: 100%; height: 100%;
-      object-fit: cover; object-position: top;
+      object-fit: cover; object-position: center top;
       display: block;
     }
-    .rcard-photo-placeholder {
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center; gap: 6px;
-      width: 100%; height: 100%;
-      color: #b0c4b8;
-    }
-    .rcard-photo-placeholder svg { width: 28px; height: 28px; }
-    .rcard-photo-placeholder span { font-size: 10px; font-weight: 600; letter-spacing: .3px; }
     .rcard-photo-label {
-      position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%);
-      background: rgba(0,0,0,.55); backdrop-filter: blur(4px);
+      position: absolute; bottom: 8px; left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,.6); backdrop-filter: blur(4px);
       color: #fff; font-size: 9.5px; font-weight: 700;
-      padding: 3px 9px; border-radius: 20px;
-      white-space: nowrap; letter-spacing: .3px;
+      padding: 3px 10px; border-radius: 20px;
+      white-space: nowrap; letter-spacing: .4px;
     }
     .rcard-divider {
       position: absolute; left: 50%; top: 0; bottom: 0;
-      width: 2px; background: #fff; z-index: 2;
+      width: 2.5px; background: #fff; z-index: 2;
       transform: translateX(-50%);
     }
-    .rcard-divider-badge {
+    .rcard-vs {
       position: absolute; top: 50%; left: 50%;
       transform: translate(-50%, -50%);
       background: var(--accent); color: #fff;
-      font-size: 9px; font-weight: 800;
-      padding: 4px 7px; border-radius: 20px;
-      z-index: 3; letter-spacing: .4px;
-      white-space: nowrap; border: 2px solid #fff;
+      font-size: 9px; font-weight: 900;
+      padding: 5px 8px; border-radius: 20px;
+      z-index: 3; letter-spacing: .5px;
+      border: 2.5px solid #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,.25);
+    }
+    .rcard-result-badge {
+      position: absolute; top: 10px; right: 10px;
+      background: var(--accent); color: #fff;
+      font-size: 11px; font-weight: 900;
+      padding: 5px 10px; border-radius: 20px;
+      z-index: 4; border: 2px solid rgba(255,255,255,.6);
+      box-shadow: 0 2px 10px rgba(31,168,78,.5);
+      line-height: 1.2; text-align: center;
     }
     .rcard-info {
-      padding: 13px 14px 14px;
-      display: flex; align-items: center; gap: 12px;
+      padding: 12px 14px 13px;
+      display: flex; align-items: center; gap: 11px;
+      background: var(--surface);
     }
-    .rcard-avatar {
-      width: 38px; height: 38px; border-radius: 50%;
-      background: var(--accent-light, #e6f0e9);
-      border: 2px solid var(--border);
+    .rcard-icon {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: #e6f0e9; border: 2px solid var(--border);
       display: flex; align-items: center; justify-content: center;
       font-size: 16px; flex-shrink: 0;
-      overflow: hidden;
     }
-    .rcard-avatar img { width: 100%; height: 100%; object-fit: cover; }
-    .rcard-name { font-size: 13px; font-weight: 700; color: var(--text); }
-    .rcard-meta { font-size: 11.5px; color: var(--muted); margin-top: 1px; }
-    .rcard-tag {
+    .rcard-name  { font-size: 13px; font-weight: 700; color: var(--text); line-height: 1.2; }
+    .rcard-meta  { font-size: 11px; color: var(--muted); margin-top: 2px; }
+    .rcard-tag   {
       margin-left: auto; flex-shrink: 0;
       background: #e6f0e9; color: var(--accent);
-      font-size: 10px; font-weight: 700;
-      padding: 4px 9px; border-radius: 20px;
-      letter-spacing: .3px;
+      font-size: 9.5px; font-weight: 700;
+      padding: 4px 9px; border-radius: 20px; letter-spacing: .3px;
     }
 
     /* ═══════════════════════════════════
@@ -737,6 +781,44 @@
   </div><!-- /cards-wrap -->
 
   <!-- ══════════════════════════════
+       STATS SECTION
+  ══════════════════════════════ -->
+  <section class="stats-sec" id="stats-sec">
+    <div class="sec-header" style="text-align:center">
+      <div class="sec-eyebrow">Evidências Clínicas</div>
+      <div class="sec-title" style="color:#fff">O que os estudos mostram</div>
+      <div class="sec-desc" style="color:rgba(255,255,255,.5)">Dados do estudo SURMOUNT-1 com tirzepatida publicados no NEJM</div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-num" data-target="20.9" data-suffix="%">0%</div>
+        <div class="stat-label">média de perda de peso</div>
+        <div class="stat-sub">dose 15 mg · 72 semanas</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" data-target="57" data-suffix="%">0%</div>
+        <div class="stat-label">perderam mais de 20% do peso</div>
+        <div class="stat-sub">grupo 15 mg</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" data-target="82" data-suffix="%">0%</div>
+        <div class="stat-label">atingiram ≥5% de perda</div>
+        <div class="stat-sub">vs 67% com semaglutida</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" data-target="2539" data-suffix="">0</div>
+        <div class="stat-label">participantes no estudo</div>
+        <div class="stat-sub">18 países · duplo-cego</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:18px">
+      <span style="font-size:10.5px;color:rgba(255,255,255,.35);letter-spacing:.3px">
+        Fonte: Jastreboff et al., NEJM 2022 · Resultados individuais podem variar
+      </span>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════
        RESULTS SECTION
   ══════════════════════════════ -->
   <section class="results">
@@ -748,34 +830,26 @@
 
     <div class="result-cards">
 
-      <!-- Resultado 1 -->
+      <!-- Resultado 1 — 18 kg em 4 meses -->
       <div class="rcard">
         <div class="rcard-photos">
           <div class="rcard-photo">
-            <!-- Substitua por: <img src="resultado1-antes.webp" alt="Antes"> -->
-            <div class="rcard-photo-placeholder">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-              <span>Foto antes</span>
-            </div>
+            <img src="images/antes-1.webp" alt="Antes — Cliente 1" loading="lazy">
             <div class="rcard-photo-label">Antes</div>
           </div>
           <div class="rcard-photo">
-            <!-- Substitua por: <img src="resultado1-depois.webp" alt="Depois"> -->
-            <div class="rcard-photo-placeholder">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-              <span>Foto depois</span>
-            </div>
+            <img src="images/depois-1.webp" alt="Depois — Cliente 1" loading="lazy">
             <div class="rcard-photo-label">Depois</div>
           </div>
-          <div class="rcard-divider">
-            <div class="rcard-divider-badge">VS</div>
-          </div>
+          <div class="rcard-divider"></div>
+          <div class="rcard-vs">VS</div>
+          <div class="rcard-result-badge">−18 kg<br><span style="font-size:9px;font-weight:600;opacity:.9">4 meses</span></div>
         </div>
         <div class="rcard-info">
-          <div class="rcard-avatar">😊</div>
+          <div class="rcard-icon">💪</div>
           <div>
             <div class="rcard-name">Cliente 1</div>
-            <div class="rcard-meta">Tempo de uso · Produto utilizado</div>
+            <div class="rcard-meta">18 kg perdidos · 4 meses de uso</div>
           </div>
           <div class="rcard-tag">Tirzepatida</div>
         </div>
@@ -785,30 +859,24 @@
       <div class="rcard">
         <div class="rcard-photos">
           <div class="rcard-photo">
-            <div class="rcard-photo-placeholder">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-              <span>Foto antes</span>
-            </div>
+            <img src="images/antes-2.webp" alt="Antes — Cliente 2" loading="lazy">
             <div class="rcard-photo-label">Antes</div>
           </div>
           <div class="rcard-photo">
-            <div class="rcard-photo-placeholder">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-              <span>Foto depois</span>
-            </div>
+            <img src="images/depois-2.webp" alt="Depois — Cliente 2" loading="lazy">
             <div class="rcard-photo-label">Depois</div>
           </div>
-          <div class="rcard-divider">
-            <div class="rcard-divider-badge">VS</div>
-          </div>
+          <div class="rcard-divider"></div>
+          <div class="rcard-vs">VS</div>
+          <div class="rcard-result-badge">Em breve</div>
         </div>
         <div class="rcard-info">
-          <div class="rcard-avatar">🙂</div>
+          <div class="rcard-icon">⭐</div>
           <div>
             <div class="rcard-name">Cliente 2</div>
-            <div class="rcard-meta">Tempo de uso · Produto utilizado</div>
+            <div class="rcard-meta">Resultado em atualização</div>
           </div>
-          <div class="rcard-tag">Retatrutida</div>
+          <div class="rcard-tag">Tirzepatida</div>
         </div>
       </div>
 
@@ -816,34 +884,84 @@
       <div class="rcard">
         <div class="rcard-photos">
           <div class="rcard-photo">
-            <div class="rcard-photo-placeholder">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-              <span>Foto antes</span>
-            </div>
+            <img src="images/antes-3.webp" alt="Antes — Cliente 3" loading="lazy">
             <div class="rcard-photo-label">Antes</div>
           </div>
           <div class="rcard-photo">
-            <div class="rcard-photo-placeholder">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-              <span>Foto depois</span>
-            </div>
+            <img src="images/depois-3.webp" alt="Depois — Cliente 3" loading="lazy">
             <div class="rcard-photo-label">Depois</div>
           </div>
-          <div class="rcard-divider">
-            <div class="rcard-divider-badge">VS</div>
-          </div>
+          <div class="rcard-divider"></div>
+          <div class="rcard-vs">VS</div>
+          <div class="rcard-result-badge">Em breve</div>
         </div>
         <div class="rcard-info">
-          <div class="rcard-avatar">😄</div>
+          <div class="rcard-icon">🔥</div>
           <div>
             <div class="rcard-name">Cliente 3</div>
-            <div class="rcard-meta">Tempo de uso · Produto utilizado</div>
+            <div class="rcard-meta">Resultado em atualização</div>
           </div>
-          <div class="rcard-tag">Peptídeos</div>
+          <div class="rcard-tag">Tirzepatida</div>
+        </div>
+      </div>
+
+      <!-- Resultado 4 -->
+      <div class="rcard">
+        <div class="rcard-photos">
+          <div class="rcard-photo">
+            <img src="images/antes-4.webp" alt="Antes — Cliente 4" loading="lazy">
+            <div class="rcard-photo-label">Antes</div>
+          </div>
+          <div class="rcard-photo">
+            <img src="images/depois-4.webp" alt="Depois — Cliente 4" loading="lazy">
+            <div class="rcard-photo-label">Depois</div>
+          </div>
+          <div class="rcard-divider"></div>
+          <div class="rcard-vs">VS</div>
+          <div class="rcard-result-badge">Em breve</div>
+        </div>
+        <div class="rcard-info">
+          <div class="rcard-icon">🌟</div>
+          <div>
+            <div class="rcard-name">Cliente 4</div>
+            <div class="rcard-meta">Resultado em atualização</div>
+          </div>
+          <div class="rcard-tag">Tirzepatida</div>
+        </div>
+      </div>
+
+      <!-- Resultado 5 -->
+      <div class="rcard">
+        <div class="rcard-photos">
+          <div class="rcard-photo">
+            <img src="images/antes-5.webp" alt="Antes — Cliente 5" loading="lazy">
+            <div class="rcard-photo-label">Antes</div>
+          </div>
+          <div class="rcard-photo">
+            <img src="images/depois-5.webp" alt="Depois — Cliente 5" loading="lazy">
+            <div class="rcard-photo-label">Depois</div>
+          </div>
+          <div class="rcard-divider"></div>
+          <div class="rcard-vs">VS</div>
+          <div class="rcard-result-badge">Em breve</div>
+        </div>
+        <div class="rcard-info">
+          <div class="rcard-icon">✨</div>
+          <div>
+            <div class="rcard-name">Cliente 5</div>
+            <div class="rcard-meta">Resultado em atualização</div>
+          </div>
+          <div class="rcard-tag">Tirzepatida</div>
         </div>
       </div>
 
     </div>
+
+    <!-- WhatsApp CTA after results -->
+    <a href="https://wa.me/5561999263702" class="btn btn-wa" style="display:flex;margin:24px auto 0;max-width:320px">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Quero meu resultado também
+    </a>
   </section>
 
   <!-- ══════════════════════════════
@@ -974,6 +1092,36 @@
       btn.classList.add('act');
       document.getElementById('vlm-'+card).textContent = mg;
     }
+
+    /* ── Stats counter animation ── */
+    (function() {
+      var ran = false;
+      function runCounters() {
+        if (ran) return;
+        ran = true;
+        document.querySelectorAll('.stat-num').forEach(function(el) {
+          var target  = parseFloat(el.dataset.target);
+          var suffix  = el.dataset.suffix || '';
+          var decimal = target % 1 !== 0;
+          var start   = null;
+          var dur     = 1600;
+          function step(ts) {
+            if (!start) start = ts;
+            var prog  = Math.min((ts - start) / dur, 1);
+            var eased = 1 - Math.pow(1 - prog, 3);
+            var val   = target * eased;
+            el.textContent = (decimal ? val.toFixed(1) : Math.floor(val)) + suffix;
+            if (prog < 1) requestAnimationFrame(step);
+          }
+          requestAnimationFrame(step);
+        });
+      }
+      var obs = new IntersectionObserver(function(entries) {
+        if (entries[0].isIntersecting) { runCounters(); obs.disconnect(); }
+      }, { threshold: 0.25 });
+      var sec = document.getElementById('stats-sec');
+      if (sec) obs.observe(sec);
+    })();
   </script>
 
 </body>
