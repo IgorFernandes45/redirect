@@ -563,6 +563,37 @@
     }
     .fab svg { width: 20px; height: 20px; }
 
+    /* ── Diferenciais strip ── */
+    .diff-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border-top: 1px solid var(--border);
+      border-bottom: 3px solid var(--accent);
+    }
+    .diff-item {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 6px; padding: 16px 10px;
+      background: var(--card);
+      text-align: center;
+    }
+    .diff-icon { font-size: 22px; line-height: 1; }
+    .diff-label {
+      font-size: 11px; font-weight: 800;
+      color: var(--text); line-height: 1.25;
+      letter-spacing: .2px;
+    }
+    .diff-sub {
+      font-size: 9.5px; color: var(--muted);
+      letter-spacing: .3px;
+    }
+    .diff-item:nth-child(1) .diff-icon { color: var(--accent); }
+    .diff-item:nth-child(2) .diff-icon { color: #38bdf8; }
+    .diff-item:nth-child(3) .diff-icon { color: var(--accent); }
+    .diff-item:nth-child(4) .diff-icon { color: #f59e0b; }
+
     /* Footer */
     footer {
       text-align: center; padding: 28px 20px 12px;
@@ -592,7 +623,7 @@
         </div>
         <div>
           <div class="hero-name">Acerte i Saúde Farma</div>
-          <div class="hero-sub">Farmácia Especializada</div>
+          <div class="hero-sub">Fornecedor Direto 🇵🇾</div>
         </div>
       </div>
       <div class="paraguay-badge">
@@ -601,11 +632,11 @@
     </div>
 
     <div class="hero-body">
-      <div class="hero-eyebrow">Produtos Premium</div>
-      <h1>Saúde com <em>qualidade</em> e procedência</h1>
+      <div class="hero-eyebrow">Fornecedor Direto — Brasília DF</div>
+      <h1>Direto do Paraguai <em>até você</em></h1>
       <p class="hero-desc">
-        Tirzepatida, Retatrutida e Peptídeos importados diretamente do Paraguai,
-        com laudo de pureza, rastreabilidade de lote e certificação em cada embalagem.
+        Tirzepatida, Retatrutida e Peptídeos importados diretamente do Paraguai.
+        Entregamos em todo o DF com cadeia fria garantida — você paga <strong style="color:#fff">só após receber</strong>.
       </p>
       <div class="hero-actions">
         <a href="https://wa.me/5561999263702" onclick="trackWA()" class="btn-wa">
@@ -616,6 +647,32 @@
       </div>
     </div>
   </section>
+
+  <!-- ══════════════════════════════
+       DIFERENCIAIS STRIP
+  ══════════════════════════════ -->
+  <div class="diff-strip">
+    <div class="diff-item">
+      <div class="diff-icon">🇵🇾</div>
+      <div class="diff-label">Fornecedor Direto</div>
+      <div class="diff-sub">Importado do Paraguai</div>
+    </div>
+    <div class="diff-item">
+      <div class="diff-icon">❄️</div>
+      <div class="diff-label">100% Refrigerado</div>
+      <div class="diff-sub">Cadeia fria garantida</div>
+    </div>
+    <div class="diff-item">
+      <div class="diff-icon">🛵</div>
+      <div class="diff-label">Entrega em Todo o DF</div>
+      <div class="diff-sub">Rápida e segura</div>
+    </div>
+    <div class="diff-item">
+      <div class="diff-icon">🤝</div>
+      <div class="diff-label">Pague Só ao Receber</div>
+      <div class="diff-sub">Sem risco para você</div>
+    </div>
+  </div>
 
   <!-- ══════════════════════════════
        PRODUCTS
