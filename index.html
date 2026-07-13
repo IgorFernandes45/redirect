@@ -1,911 +1,781 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-theme="light">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Acerte i Saúde Farma — Catálogo</title>
+  <title>Acerte i Saúde Farma</title>
   <style>
     :root {
-      --bg: #f7f8f7;
+      --hero: #0b1f12;
+      --hero2: #112918;
+      --accent: #1fa84e;
+      --accent-dark: #178040;
+      --accent-glow: rgba(31,168,78,.35);
+      --bg: #f3f7f4;
       --surface: #ffffff;
-      --surface-alt: #f0f4f1;
-      --border: #e2e8e4;
-      --heading: #162d20;
-      --body: #2e3d33;
-      --muted: #7a8c80;
-      --accent: #2a5c3f;
-      --accent-light: #e6f0e9;
-      --tag-bg: #dceee2;
-      --tag-text: #1c4a2c;
+      --border: #dde8e0;
+      --text: #111e16;
+      --muted: #6a7d70;
       --wa: #25d366;
-      --wa-dark: #1da851;
-      --placeholder-bg: #eaf0ec;
-      --placeholder-icon: #b0c4b8;
-      --shadow-sm: 0 1px 3px rgba(22,45,32,.07), 0 1px 2px rgba(22,45,32,.04);
-      --shadow-md: 0 4px 12px rgba(22,45,32,.10), 0 1px 4px rgba(22,45,32,.06);
-      --radius: 14px;
-      --radius-sm: 9px;
+      --radius: 18px;
+      --radius-sm: 11px;
+      --shadow: 0 2px 14px rgba(0,0,0,.08), 0 1px 3px rgba(0,0,0,.05);
     }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #0f1a13;
-        --surface: #192619;
-        --surface-alt: #1e2e1f;
-        --border: #2a3d2c;
-        --heading: #d6ead9;
-        --body: #a8c0ad;
-        --muted: #5e7a64;
-        --accent: #4caf72;
-        --accent-light: #1a2e1c;
-        --tag-bg: #1c3522;
-        --tag-text: #7ed49a;
-        --wa: #25d366;
-        --wa-dark: #1da851;
-        --placeholder-bg: #1e2e1f;
-        --placeholder-icon: #3a5040;
-        --shadow-sm: 0 1px 3px rgba(0,0,0,.3);
-        --shadow-md: 0 4px 16px rgba(0,0,0,.4);
-      }
-    }
-    :root[data-theme="dark"] {
-      --bg: #0f1a13; --surface: #192619; --surface-alt: #1e2e1f;
-      --border: #2a3d2c; --heading: #d6ead9; --body: #a8c0ad;
-      --muted: #5e7a64; --accent: #4caf72; --accent-light: #1a2e1c;
-      --tag-bg: #1c3522; --tag-text: #7ed49a;
-      --placeholder-bg: #1e2e1f; --placeholder-icon: #3a5040;
-      --shadow-sm: 0 1px 3px rgba(0,0,0,.3); --shadow-md: 0 4px 16px rgba(0,0,0,.4);
-    }
-    :root[data-theme="light"] {
-      --bg: #f7f8f7; --surface: #ffffff; --surface-alt: #f0f4f1;
-      --border: #e2e8e4; --heading: #162d20; --body: #2e3d33;
-      --muted: #7a8c80; --accent: #2a5c3f; --accent-light: #e6f0e9;
-      --tag-bg: #dceee2; --tag-text: #1c4a2c;
-      --placeholder-bg: #eaf0ec; --placeholder-icon: #b0c4b8;
-      --shadow-sm: 0 1px 3px rgba(22,45,32,.07), 0 1px 2px rgba(22,45,32,.04);
-      --shadow-md: 0 4px 12px rgba(22,45,32,.10), 0 1px 4px rgba(22,45,32,.06);
-    }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+    html { scroll-behavior: smooth; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
       background: var(--bg);
-      color: var(--body);
+      color: var(--text);
       max-width: 430px;
       margin: 0 auto;
-      min-height: 100dvh;
-      padding-bottom: 100px;
+      overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
+      padding-bottom: 88px;
     }
 
-    /* ── HEADER ── */
-    header {
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      padding: 18px 20px 14px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
-    .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .brand-icon {
-      width: 36px; height: 36px;
-      background: var(--accent);
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-    .brand-icon svg { width: 20px; height: 20px; }
-    .brand-name {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--heading);
-      letter-spacing: -.2px;
-      line-height: 1.2;
-    }
-    .brand-sub {
-      font-size: 10px;
-      color: var(--muted);
-      letter-spacing: .4px;
-      text-transform: uppercase;
-      font-weight: 500;
-    }
-    .theme-toggle {
-      background: var(--surface-alt);
-      border: 1px solid var(--border);
-      border-radius: 50%;
-      width: 34px; height: 34px;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer;
-      color: var(--muted);
-      font-size: 15px;
-      flex-shrink: 0;
-    }
-
-    /* ── HERO ── */
+    /* ═══════════════════════════════════
+       HERO
+    ═══════════════════════════════════ */
     .hero {
-      padding: 28px 20px 24px;
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
+      background: linear-gradient(160deg, var(--hero) 0%, var(--hero2) 100%);
+      padding: 48px 24px 52px;
+      position: relative;
+      overflow: hidden;
     }
+    .hero-blob1 {
+      position: absolute; top: -80px; right: -60px;
+      width: 220px; height: 220px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(31,168,78,.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-blob2 {
+      position: absolute; bottom: -60px; left: -40px;
+      width: 180px; height: 180px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(31,168,78,.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-top {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 28px; position: relative;
+    }
+    .hero-brand { display: flex; align-items: center; gap: 10px; }
+    .hero-icon {
+      width: 42px; height: 42px;
+      background: var(--accent);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-icon svg { width: 22px; height: 22px; }
+    .hero-name { font-size: 13px; font-weight: 800; color: #fff; line-height: 1.15; }
+    .hero-sub  { font-size: 9.5px; color: rgba(255,255,255,.45); letter-spacing: .5px; text-transform: uppercase; }
+
+    .paraguay-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.18);
+      backdrop-filter: blur(6px);
+      color: rgba(255,255,255,.85);
+      font-size: 11px; font-weight: 600;
+      padding: 5px 12px; border-radius: 20px;
+    }
+    .flag { font-size: 14px; }
+
+    .hero-body { position: relative; }
     .hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: var(--tag-bg);
-      color: var(--tag-text);
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: .5px;
-      text-transform: uppercase;
-      padding: 4px 10px;
-      border-radius: 20px;
-      margin-bottom: 12px;
+      display: inline-flex; align-items: center; gap: 6px;
+      color: var(--accent); font-size: 11px; font-weight: 700;
+      letter-spacing: .7px; text-transform: uppercase; margin-bottom: 14px;
     }
     .hero-eyebrow::before {
-      content: '';
-      width: 6px; height: 6px;
-      background: var(--accent);
-      border-radius: 50%;
-      display: inline-block;
+      content: ''; width: 20px; height: 2px;
+      background: var(--accent); display: inline-block;
     }
     .hero h1 {
-      font-size: 26px;
-      font-weight: 800;
-      color: var(--heading);
-      line-height: 1.2;
-      letter-spacing: -.4px;
-      text-wrap: balance;
-      margin-bottom: 8px;
+      font-size: 32px; font-weight: 900; color: #fff;
+      line-height: 1.12; letter-spacing: -.6px;
+      margin-bottom: 14px; text-wrap: balance;
     }
-    .hero p {
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.55;
+    .hero h1 em { color: var(--accent); font-style: normal; }
+    .hero-desc {
+      font-size: 14px; color: rgba(255,255,255,.6);
+      line-height: 1.65; margin-bottom: 28px; max-width: 340px;
     }
-
-    /* ── NAV PILLS ── */
-    .nav-scroll {
-      padding: 14px 0;
-      overflow-x: auto;
-      scrollbar-width: none;
-      -webkit-overflow-scrolling: touch;
-      border-bottom: 1px solid var(--border);
-      background: var(--surface);
-    }
-    .nav-scroll::-webkit-scrollbar { display: none; }
-    .nav-pills {
-      display: flex;
-      gap: 8px;
-      padding: 0 20px;
-      width: max-content;
-    }
-    .pill {
-      padding: 7px 16px;
-      border-radius: 20px;
-      font-size: 13px;
-      font-weight: 600;
-      white-space: nowrap;
-      cursor: pointer;
-      border: 1.5px solid var(--border);
-      background: var(--surface);
-      color: var(--muted);
+    .hero-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .btn-wa {
+      display: inline-flex; align-items: center; gap: 9px;
+      background: var(--wa); color: #fff;
+      font-size: 14px; font-weight: 700;
+      padding: 13px 22px; border-radius: 50px;
       text-decoration: none;
-      transition: background .15s, color .15s, border-color .15s;
+      box-shadow: 0 4px 20px rgba(37,211,102,.45);
     }
-    .pill.active, .pill:hover {
-      background: var(--accent);
-      color: #fff;
-      border-color: var(--accent);
+    .btn-wa svg { width: 18px; height: 18px; }
+    .hero-hint {
+      font-size: 12px; color: rgba(255,255,255,.4);
+      display: flex; align-items: center; gap: 5px;
     }
+    .hero-hint::before { content: '↓'; }
 
-    /* ── SECTIONS ── */
-    .catalog { padding: 0 16px; }
+    /* ═══════════════════════════════════
+       SECTION HEADERS
+    ═══════════════════════════════════ */
+    .sec-header { padding: 36px 20px 20px; }
+    .sec-eyebrow {
+      font-size: 10.5px; font-weight: 700; letter-spacing: .8px;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 5px;
+    }
+    .sec-title {
+      font-size: 25px; font-weight: 900; color: var(--text);
+      letter-spacing: -.4px; line-height: 1.2; margin-bottom: 5px;
+      text-wrap: balance;
+    }
+    .sec-desc { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
 
-    .section {
-      margin-top: 28px;
-    }
-    .section-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 14px;
-      padding: 0 4px;
-    }
-    .section-title-group { display: flex; flex-direction: column; gap: 2px; }
-    .section-eyebrow {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: .6px;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-    .section-title {
-      font-size: 19px;
-      font-weight: 800;
-      color: var(--heading);
-      letter-spacing: -.3px;
-    }
-    .section-count {
-      font-size: 12px;
-      color: var(--muted);
-      background: var(--surface-alt);
-      padding: 3px 9px;
-      border-radius: 20px;
-      font-weight: 600;
-    }
+    /* ═══════════════════════════════════
+       PRODUCT CARDS
+    ═══════════════════════════════════ */
+    .cards-wrap { padding: 0 16px; display: flex; flex-direction: column; gap: 20px; }
 
-    /* ── CARDS ── */
-    .cards-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-    .card {
+    .pcard {
       background: var(--surface);
       border-radius: var(--radius);
-      box-shadow: var(--shadow-sm);
+      box-shadow: var(--shadow);
       overflow: hidden;
       border: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
     }
-    .card-img {
-      aspect-ratio: 1 / 1;
-      background: var(--placeholder-bg);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      position: relative;
+
+    /* Visual area */
+    .pcard-visual {
+      height: 210px;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+      transition: background-color .4s ease;
     }
-    .card-img svg {
-      width: 32px; height: 32px;
-      color: var(--placeholder-icon);
+    .pcard-visual-bg {
+      position: absolute; inset: 0;
+      opacity: .08;
+      transition: opacity .3s;
     }
-    .card-img-label {
-      font-size: 10px;
-      color: var(--placeholder-icon);
-      font-weight: 500;
+    .pcard-origin-badge {
+      position: absolute; top: 12px; left: 12px;
+      background: rgba(0,0,0,.45);
+      backdrop-filter: blur(6px);
+      color: #fff; font-size: 10.5px; font-weight: 600;
+      padding: 4px 10px; border-radius: 20px;
+      display: flex; align-items: center; gap: 5px;
+    }
+    .pcard-type-badge {
+      position: absolute; top: 12px; right: 12px;
+      font-size: 9.5px; font-weight: 700; letter-spacing: .5px;
+      text-transform: uppercase; padding: 4px 9px; border-radius: 6px;
+      background: rgba(255,255,255,.15); color: #fff;
+      backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,.2);
+    }
+
+    /* Vial illustration */
+    .vial-wrap { display: flex; flex-direction: column; align-items: center; gap: 0; position: relative; z-index: 1; }
+    .vial-cap {
+      width: 54px; height: 18px; border-radius: 5px 5px 2px 2px;
+      transition: background-color .4s;
+    }
+    .vial-neck {
+      width: 34px; height: 14px;
+      transition: background-color .4s;
+    }
+    .vial-body {
+      width: 80px; height: 116px;
+      border-radius: 8px 8px 22px 22px;
+      border: 2.5px solid;
+      position: relative; overflow: hidden;
+      background: rgba(255,255,255,.12);
+      backdrop-filter: blur(4px);
+      transition: border-color .4s;
+    }
+    .vial-liquid {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 58%; transition: background-color .4s;
+    }
+    .vial-shine {
+      position: absolute; left: 10px; top: 6px; bottom: 6px;
+      width: 8px; border-radius: 4px;
+      background: rgba(255,255,255,.28);
+    }
+    .vial-label {
+      position: absolute; top: 20px; left: 9px; right: 9px;
+      background: rgba(255,255,255,.93);
+      border-radius: 5px; padding: 7px 5px 6px;
+      text-align: center;
+    }
+    .vial-label-brand {
+      font-size: 12px; font-weight: 900; letter-spacing: .4px;
+      transition: color .4s; display: block; line-height: 1;
+    }
+    .vial-label-line {
+      font-size: 8.5px; color: #777; font-weight: 600; margin-top: 3px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .vial-label-mg {
+      font-size: 9px; color: #aaa; font-weight: 600; margin-top: 1px;
+    }
+
+    /* Card body */
+    .pcard-body { padding: 18px 16px 16px; }
+    .pcard-category {
+      font-size: 10px; font-weight: 700; letter-spacing: .7px;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 4px;
+    }
+    .pcard-name {
+      font-size: 21px; font-weight: 900; color: var(--text);
+      letter-spacing: -.3px; margin-bottom: 14px;
+    }
+
+    /* Brand selector */
+    .brand-sel { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 13px; }
+    .bbtn {
+      padding: 6px 15px; border-radius: 20px; font-size: 12.5px; font-weight: 700;
+      border: 2px solid var(--border); background: transparent; color: var(--muted);
+      cursor: pointer; transition: all .18s; letter-spacing: .2px;
+    }
+    .bbtn.act { color: #fff !important; border-color: transparent !important; }
+
+    /* Mg selector */
+    .mg-sel { display: flex; gap: 6px; margin-bottom: 15px; }
+    .mgbtn {
+      padding: 5px 14px; border-radius: 8px; font-size: 12px; font-weight: 700;
+      border: 1.5px solid var(--border); background: transparent; color: var(--muted);
+      cursor: pointer; transition: all .15s;
+    }
+    .mgbtn.act { background: #eef8f1; border-color: var(--accent); color: var(--accent); }
+    .no-mg { display: none; }
+
+    /* Brand info */
+    .binfo { display: none; }
+    .binfo.act { display: block; animation: fIn .22s ease; }
+    @keyframes fIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .binfo-desc {
+      font-size: 13.5px; color: var(--muted); line-height: 1.65; margin-bottom: 12px;
+    }
+    .binfo-lab {
+      display: flex; align-items: center; gap: 10px;
+      background: #f2f7f3; border-radius: 10px;
+      padding: 10px 13px; margin-bottom: 15px; border: 1px solid #e0ebe2;
+    }
+    .binfo-lab-icon {
+      width: 36px; height: 36px; border-radius: 9px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .binfo-lab-icon svg { width: 18px; height: 18px; }
+    .binfo-lab-name { font-size: 12.5px; font-weight: 700; color: var(--text); }
+    .binfo-lab-sub  { font-size: 11px; color: var(--muted); margin-top: 1px; }
+
+    .pcard-cta {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      width: 100%; padding: 13px; background: var(--accent); color: #fff;
+      font-size: 14px; font-weight: 700; border: none; border-radius: var(--radius-sm);
+      cursor: pointer; text-decoration: none; letter-spacing: .2px;
+    }
+    .pcard-cta svg { width: 17px; height: 17px; }
+
+    /* ═══════════════════════════════════
+       TRUST SECTION
+    ═══════════════════════════════════ */
+    .trust {
+      background: linear-gradient(160deg, var(--hero) 0%, #0e2418 100%);
+      margin-top: 16px; padding: 44px 20px 48px;
+      position: relative; overflow: hidden;
+    }
+    .trust::before {
+      content: ''; position: absolute; top: -100px; right: -100px;
+      width: 300px; height: 300px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(31,168,78,.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .trust .sec-eyebrow { color: var(--wa); }
+    .trust .sec-title { color: #fff; margin-bottom: 6px; }
+    .trust .sec-desc { color: rgba(255,255,255,.5); margin-bottom: 28px; }
+
+    .trust-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; }
+
+    .tcard {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 14px; padding: 18px 14px 16px;
+    }
+    .tcard-icon {
+      width: 46px; height: 46px; border-radius: 13px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 13px;
+    }
+    .tcard-icon svg { width: 22px; height: 22px; }
+    .tcard-title { font-size: 13px; font-weight: 800; color: #fff; margin-bottom: 7px; line-height: 1.3; }
+    .tcard-desc  { font-size: 11.5px; color: rgba(255,255,255,.5); line-height: 1.55; }
+
+    /* QR visual */
+    .qr-mini {
+      display: grid; grid-template-columns: repeat(7,1fr); gap: 1.5px;
+      width: 44px; margin-bottom: 9px;
+    }
+    .qr-mini span {
+      aspect-ratio: 1; border-radius: 1px;
+    }
+    .qr-mini span.b { background: rgba(255,255,255,.8); }
+    .qr-mini span.w { background: transparent; }
+
+    /* UV badge */
+    .uv-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      background: rgba(139,92,246,.2); border: 1px solid rgba(139,92,246,.35);
+      color: #c4b5fd; font-size: 10px; font-weight: 700;
+      padding: 3px 8px; border-radius: 6px; margin-top: 8px;
       letter-spacing: .3px;
     }
-    .card-body {
-      padding: 10px 11px 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      flex: 1;
-    }
-    .card-name {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--heading);
-      line-height: 1.3;
-      letter-spacing: -.1px;
-    }
-    .card-mg {
-      display: inline-block;
-      background: var(--accent-light);
-      color: var(--accent);
-      font-size: 11px;
-      font-weight: 700;
-      padding: 3px 8px;
-      border-radius: 6px;
-      letter-spacing: .2px;
-      align-self: flex-start;
-    }
-    .card-meta {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-      margin-top: 2px;
-    }
-    .card-meta-row {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-    .card-meta-label {
-      font-size: 9.5px;
-      text-transform: uppercase;
-      letter-spacing: .5px;
-      color: var(--muted);
-      font-weight: 600;
-      width: 32px;
-      flex-shrink: 0;
-    }
-    .card-meta-value {
-      font-size: 11.5px;
-      color: var(--body);
-      font-weight: 500;
-    }
-    .card-cta {
-      margin-top: 8px;
-      width: 100%;
-      padding: 8px 0;
-      background: var(--accent);
-      color: #fff;
-      font-size: 12px;
-      font-weight: 700;
-      border: none;
-      border-radius: var(--radius-sm);
-      cursor: pointer;
-      letter-spacing: .2px;
-      text-align: center;
-      text-decoration: none;
-      display: block;
+    .uv-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: #a78bfa;
+      box-shadow: 0 0 6px 2px rgba(139,92,246,.6);
     }
 
-    /* ── DIVIDER ── */
-    .section-divider {
-      height: 1px;
-      background: var(--border);
-      margin: 28px 4px 0;
+    /* Seal visual */
+    .seal-visual {
+      width: 44px; height: 44px; border-radius: 50%;
+      border: 2.5px solid rgba(250,204,21,.6);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; margin-bottom: 9px;
     }
+    .seal-visual::before {
+      content: '';
+      position: absolute; inset: 3px;
+      border-radius: 50%;
+      border: 1px dashed rgba(250,204,21,.4);
+    }
+    .seal-visual svg { width: 18px; height: 18px; color: rgba(250,204,21,.9); }
 
-    /* ── FLOATING WA BUTTON ── */
+    /* ═══════════════════════════════════
+       FLOATING BUTTON
+    ═══════════════════════════════════ */
     .fab {
       position: fixed;
-      bottom: calc(24px + env(safe-area-inset-bottom));
-      right: 20px;
-      z-index: 200;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--wa);
-      color: #fff;
-      padding: 13px 18px 13px 14px;
-      border-radius: 50px;
-      box-shadow: 0 4px 20px rgba(37,211,102,.45);
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: -.1px;
-      transition: transform .15s, box-shadow .15s;
+      bottom: calc(20px + env(safe-area-inset-bottom));
+      right: 18px; z-index: 300;
+      display: flex; align-items: center; gap: 9px;
+      background: var(--wa); color: #fff;
+      padding: 13px 19px 13px 14px; border-radius: 50px;
+      box-shadow: 0 4px 24px rgba(37,211,102,.5);
+      text-decoration: none; font-size: 14px; font-weight: 700;
+      letter-spacing: .1px;
     }
-    .fab:active { transform: scale(.96); }
-    .fab svg { width: 22px; height: 22px; flex-shrink: 0; }
-    @media (hover: hover) {
-      .fab:hover {
-        background: var(--wa-dark);
-        box-shadow: 0 6px 24px rgba(37,211,102,.55);
-        transform: translateY(-1px);
-      }
-    }
+    .fab svg { width: 20px; height: 20px; }
 
-    /* ── FOOTER ── */
+    /* Footer */
     footer {
-      text-align: center;
-      padding: 32px 20px 20px;
-      font-size: 12px;
-      color: var(--muted);
+      text-align: center; padding: 28px 20px 12px;
+      font-size: 12px; color: var(--muted);
     }
 
     @media (prefers-reduced-motion: reduce) {
-      * { transition: none !important; animation: none !important; }
+      *, *::before, *::after { transition: none !important; animation: none !important; }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <div class="header-inner">
-      <div class="brand">
-        <div class="brand-icon">
+  <!-- ══════════════════════════════
+       HERO
+  ══════════════════════════════ -->
+  <section class="hero">
+    <div class="hero-blob1"></div>
+    <div class="hero-blob2"></div>
+
+    <div class="hero-top">
+      <div class="hero-brand">
+        <div class="hero-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/>
           </svg>
         </div>
         <div>
-          <div class="brand-name">Acerte i Saúde Farma</div>
-          <div class="brand-sub">Catálogo de Produtos</div>
+          <div class="hero-name">Acerte i Saúde Farma</div>
+          <div class="hero-sub">Farmácia Especializada</div>
         </div>
       </div>
-      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema">
-        <span id="theme-icon">☀️</span>
-      </button>
+      <div class="paraguay-badge">
+        <span class="flag">🇵🇾</span> Paraguai
+      </div>
     </div>
-  </header>
 
-  <!-- Nav Pills -->
-  <div class="nav-scroll">
-    <nav class="nav-pills">
-      <a class="pill active" href="#tirzepatida">Tirzepatida</a>
-      <a class="pill" href="#retatrutida">Retatrutida</a>
-      <a class="pill" href="#peptideos">Peptídeos</a>
-      <a class="pill" href="#testosterona">Testosterona</a>
-    </nav>
+    <div class="hero-body">
+      <div class="hero-eyebrow">Produtos Premium</div>
+      <h1>Saúde com <em>qualidade</em> e procedência</h1>
+      <p class="hero-desc">
+        Tirzepatida, Retatrutida e Peptídeos importados diretamente do Paraguai,
+        com laudo de pureza, rastreabilidade de lote e certificação em cada embalagem.
+      </p>
+      <div class="hero-actions">
+        <a href="https://wa.me/message/HTG3SXB7T5BMM1" class="btn-wa">
+          <svg viewBox="0 0 32 32" fill="white"><path d="M16 3C8.82 3 3 8.82 3 16c0 2.35.65 4.56 1.78 6.45L3 29l6.77-1.76A13 13 0 0 0 16 29c7.18 0 13-5.82 13-13S23.18 3 16 3zm5.92 16.59c-.25.7-1.47 1.36-2.02 1.44-.5.08-1.16.11-1.87-.12-.43-.14-.99-.32-1.69-.63-2.97-1.28-4.9-4.27-5.05-4.47-.15-.2-1.2-1.6-1.2-3.04s.76-2.16 1.03-2.45c.27-.3.58-.37.78-.37l.56.01c.18 0 .43-.07.67.51.25.59.85 2.09.93 2.24.08.15.13.32.03.5-.1.19-.15.3-.3.47-.16.16-.33.36-.47.48-.16.13-.32.27-.14.54.19.27.81 1.2 1.74 1.94 1.19 1 2.21 1.31 2.53 1.45.32.14.5.12.69-.07.19-.19.78-.91 1-1.24.21-.32.43-.26.72-.16.29.1 1.86.88 2.18 1.04.32.16.54.24.62.37.08.14.08.77-.17 1.46z"/></svg>
+          Falar agora
+        </a>
+        <span class="hero-hint">Ver produtos</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════
+       PRODUCTS
+  ══════════════════════════════ -->
+  <div class="sec-header">
+    <div class="sec-eyebrow">Catálogo</div>
+    <div class="sec-title">Nossos Produtos</div>
+    <div class="sec-desc">Selecione a marca e consulte disponibilidade diretamente via WhatsApp.</div>
   </div>
 
-  <!-- Hero -->
-  <div class="hero">
-    <div class="hero-eyebrow">Farmácia Especializada</div>
-    <h1>Produtos de alta qualidade para sua saúde</h1>
-    <p>Compostos manipulados, peptídeos e hormônios com rastreabilidade e laudos de qualidade.</p>
-  </div>
+  <div class="cards-wrap">
 
-  <div class="catalog">
-
-    <!-- ── TIRZEPATIDA ── -->
-    <section class="section" id="tirzepatida">
-      <div class="section-header">
-        <div class="section-title-group">
-          <span class="section-eyebrow">GLP-1 / GIP</span>
-          <span class="section-title">Tirzepatida</span>
+    <!-- ─── CARD 1: TIRZEPATIDA ─── -->
+    <div class="pcard" id="c-tirz">
+      <div class="pcard-visual" id="v-tirz" style="background-color:#0f2a4a;">
+        <div class="pcard-origin-badge"><span>🇵🇾</span> Paraguai</div>
+        <div class="pcard-type-badge">GLP-1 / GIP</div>
+        <div class="vial-wrap">
+          <div class="vial-cap" id="vc-tirz" style="background:#1e40af;"></div>
+          <div class="vial-neck" id="vn-tirz" style="background:rgba(30,64,175,.55);"></div>
+          <div class="vial-body" id="vb-tirz" style="border-color:#1e40af;">
+            <div class="vial-liquid" id="vl-tirz" style="background:rgba(30,64,175,.22);"></div>
+            <div class="vial-shine"></div>
+            <div class="vial-label">
+              <span class="vial-label-brand" id="vlb-tirz" style="color:#1e40af;">TG</span>
+              <div class="vial-label-line">Tirzepatida</div>
+              <div class="vial-label-mg" id="vlm-tirz">15 mg</div>
+            </div>
+          </div>
         </div>
-        <span class="section-count">4 itens</span>
       </div>
-      <div class="cards-grid">
+      <div class="pcard-body">
+        <div class="pcard-category">Agonista GLP-1 / GIP</div>
+        <div class="pcard-name">Tirzepatida</div>
 
-        <div class="card">
-          <div class="card-img">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
-            <span class="card-img-label">Foto</span>
-          </div>
-          <div class="card-body">
-            <span class="card-name">Tirzepatida Injetável</span>
-            <span class="card-mg">2,5 mg</span>
-            <div class="card-meta">
-              <div class="card-meta-row">
-                <span class="card-meta-label">Marca</span>
-                <span class="card-meta-value">—</span>
-              </div>
-              <div class="card-meta-row">
-                <span class="card-meta-label">Lab</span>
-                <span class="card-meta-value">—</span>
-              </div>
+        <div class="brand-sel">
+          <button class="bbtn act" style="background:#1e40af;" onclick="sw('tirz','tg',this)">TG</button>
+          <button class="bbtn" onclick="sw('tirz','tirzec',this)">Tirzec</button>
+          <button class="bbtn" onclick="sw('tirz','lipoless',this)">Lipoless</button>
+        </div>
+
+        <div class="mg-sel" id="mg-tirz">
+          <button class="mgbtn act" onclick="swMg('tirz','15 mg',this)">15 mg</button>
+          <button class="mgbtn" onclick="swMg('tirz','60 mg',this)">60 mg</button>
+        </div>
+
+        <!-- TG -->
+        <div class="binfo act" id="bi-tirz-tg">
+          <p class="binfo-desc">Tirzepatida premium com alta pureza e estabilidade comprovada em análise laboratorial. Eficaz no controle glicêmico e no manejo do peso corporal.</p>
+          <div class="binfo-lab">
+            <div class="binfo-lab-icon" style="background:#dbeafe;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#1e40af" stroke-width="2" stroke-linecap="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
             </div>
-            <a href="https://wa.me/message/HTG3SXB7T5BMM1" class="card-cta">Consultar</a>
+            <div>
+              <div class="binfo-lab-name">TG Pharma Laboratory</div>
+              <div class="binfo-lab-sub">🇵🇾 Asunción, Paraguai · Laudo HPLC incluso</div>
+            </div>
           </div>
         </div>
 
-        <div class="card">
-          <div class="card-img">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
-            <span class="card-img-label">Foto</span>
-          </div>
-          <div class="card-body">
-            <span class="card-name">Tirzepatida Injetável</span>
-            <span class="card-mg">5 mg</span>
-            <div class="card-meta">
-              <div class="card-meta-row">
-                <span class="card-meta-label">Marca</span>
-                <span class="card-meta-value">—</span>
-              </div>
-              <div class="card-meta-row">
-                <span class="card-meta-label">Lab</span>
-                <span class="card-meta-value">—</span>
-              </div>
+        <!-- Tirzec -->
+        <div class="binfo" id="bi-tirz-tirzec">
+          <p class="binfo-desc">Biodisponibilidade otimizada com formulação de liberação controlada. Produzida sob rigoroso controle de qualidade com laudo de pureza incluso em cada lote.</p>
+          <div class="binfo-lab">
+            <div class="binfo-lab-icon" style="background:#ede9fe;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#6d28d9" stroke-width="2" stroke-linecap="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
             </div>
-            <a href="https://wa.me/message/HTG3SXB7T5BMM1" class="card-cta">Consultar</a>
+            <div>
+              <div class="binfo-lab-name">Tirzec Laboratories</div>
+              <div class="binfo-lab-sub">🇵🇾 Asunción, Paraguai · Certificado de análise</div>
+            </div>
           </div>
         </div>
 
-        <div class="card">
-          <div class="card-img">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
-            <span class="card-img-label">Foto</span>
-          </div>
-          <div class="card-body">
-            <span class="card-name">Tirzepatida Injetável</span>
-            <span class="card-mg">7,5 mg</span>
-            <div class="card-meta">
-              <div class="card-meta-row">
-                <span class="card-meta-label">Marca</span>
-                <span class="card-meta-value">—</span>
-              </div>
-              <div class="card-meta-row">
-                <span class="card-meta-label">Lab</span>
-                <span class="card-meta-value">—</span>
-              </div>
+        <!-- Lipoless -->
+        <div class="binfo" id="bi-tirz-lipoless">
+          <p class="binfo-desc">Alta concentração voltada para manejo do peso corporal, com resultados expressivos. Formulação com estabilidade térmica melhorada para armazenamento seguro.</p>
+          <div class="binfo-lab">
+            <div class="binfo-lab-icon" style="background:#ffedd5;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#c2410c" stroke-width="2" stroke-linecap="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
             </div>
-            <a href="https://wa.me/message/HTG3SXB7T5BMM1" class="card-cta">Consultar</a>
+            <div>
+              <div class="binfo-lab-name">Lipoless Pharma S.A.</div>
+              <div class="binfo-lab-sub">🇵🇾 Asunción, Paraguai · Pureza ≥99%</div>
+            </div>
           </div>
         </div>
 
-        <div class="card">
-          <div class="card-img">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
-            <span class="card-img-label">Foto</span>
-          </div>
-          <div class="card-body">
-            <span class="card-name">Tirzepatida Injetável</span>
-            <span class="card-mg">10 mg</span>
-            <div class="card-meta">
-              <div class="card-meta-row">
-                <span class="card-meta-label">Marca</span>
-                <span class="card-meta-value">—</span>
-              </div>
-              <div class="card-meta-row">
-                <span class="card-meta-label">Lab</span>
-                <span class="card-meta-value">—</span>
-              </div>
-            </div>
-            <a href="https://wa.me/message/HTG3SXB7T5BMM1" class="card-cta">Consultar</a>
-          </div>
-        </div>
-
+        <a href="https://wa.me/message/HTG3SXB7T5BMM1" class="pcard-cta">
+          <svg viewBox="0 0 32 32" fill="white"><path d="M16 3C8.82 3 3 8.82 3 16c0 2.35.65 4.56 1.78 6.45L3 29l6.77-1.76A13 13 0 0 0 16 29c7.18 0 13-5.82 13-13S23.18 3 16 3zm5.92 16.59c-.25.7-1.47 1.36-2.02 1.44-.5.08-1.16.11-1.87-.12-.43-.14-.99-.32-1.69-.63-2.97-1.28-4.9-4.27-5.05-4.47-.15-.2-1.2-1.6-1.2-3.04s.76-2.16 1.03-2.45c.27-.3.58-.37.78-.37l.56.01c.18 0 .43-.07.67.51.25.59.85 2.09.93 2.24.08.15.13.32.03.5-.1.19-.15.3-.3.47-.16.16-.33.36-.47.48-.16.13-.32.27-.14.54.19.27.81 1.2 1.74 1.94 1.19 1 2.21 1.31 2.53 1.45.32.14.5.12.69-.07.19-.19.78-.91 1-1.24.21-.32.43-.26.72-.16.29.1 1.86.88 2.18 1.04.32.16.54.24.62.37.08.14.08.77-.17 1.46z"/></svg>
+          Consultar via WhatsApp
+        </a>
       </div>
-    </section>
+    </div>
 
-    <div class="section-divider"></div>
-
-    <!-- ── RETATRUTIDA ── -->
-    <section class="section" id="retatrutida">
-      <div class="section-header">
-        <div class="section-title-group">
-          <span class="section-eyebrow">GLP-1 / GIP / Glucagon</span>
-          <span class="section-title">Retatrutida</span>
+    <!-- ─── CARD 2: RETATRUTIDA ─── -->
+    <div class="pcard" id="c-reta">
+      <div class="pcard-visual" id="v-reta" style="background-color:#0e2a2e;">
+        <div class="pcard-origin-badge"><span>🇵🇾</span> Paraguai</div>
+        <div class="pcard-type-badge">GLP-1 / GIP / Glucagon</div>
+        <div class="vial-wrap">
+          <div class="vial-cap" id="vc-reta" style="background:#0e7490;"></div>
+          <div class="vial-neck" id="vn-reta" style="background:rgba(14,116,144,.55);"></div>
+          <div class="vial-body" id="vb-reta" style="border-color:#0e7490;">
+            <div class="vial-liquid" id="vl-reta" style="background:rgba(14,116,144,.22);"></div>
+            <div class="vial-shine"></div>
+            <div class="vial-label">
+              <span class="vial-label-brand" id="vlb-reta" style="color:#0e7490;">Veltrane</span>
+              <div class="vial-label-line">Retatrutida</div>
+              <div class="vial-label-mg" id="vlm-reta">Injetável</div>
+            </div>
+          </div>
         </div>
-        <span class="section-count">4 itens</span>
       </div>
-      <div class="cards-grid">
+      <div class="pcard-body">
+        <div class="pcard-category">Triplo Agonista</div>
+        <div class="pcard-name">Retatrutida</div>
 
-        <div class="card">
-          <div class="card-img">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
-            <span class="card-img-label">Foto</span>
-          </div>
-          <div class="card-body">
-            <span class="card-name">Retatrutida Injetável</span>
-            <span class="card-mg">2 mg</span>
-            <div class="card-meta">
-              <div class="card-meta-row">
-                <span class="card-meta-label">Marca</span>
-                <span class="card-meta-value">—</span>
-              </div>
-              <div class="card-meta-row">
-                <span class="card-meta-label">Lab</span>
-                <span class="card-meta-value">—</span>
-              </div>
+        <div class="brand-sel">
+          <button class="bbtn act" style="background:#0e7490;" onclick="sw('reta','veltrane',this)">Veltrane</button>
+          <button class="bbtn" onclick="sw('reta','syndedica',this)">Syndedica</button>
+        </div>
+
+        <!-- Veltrane -->
+        <div class="binfo act" id="bi-reta-veltrane">
+          <p class="binfo-desc">Triplo agonista de nova geração com ação simultânea nos receptores GLP-1, GIP e Glucagon. Potência metabólica superior com excelente perfil de tolerabilidade.</p>
+          <div class="binfo-lab">
+            <div class="binfo-lab-icon" style="background:#cffafe;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#0e7490" stroke-width="2" stroke-linecap="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
             </div>
-            <a href="https://wa.me/message/HTG3SXB7T5BMM1" class="card-cta">Consultar</a>
+            <div>
+              <div class="binfo-lab-name">Veltrane BioPharma</div>
+              <div class="binfo-lab-sub">🇵🇾 Asunción, Paraguai · Laudo de pureza incluso</div>
+            </div>
           </div>
         </div>
 
-        <div class="card">
-          <div class="card-img">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
-            <span class="card-img-label">Foto</span>
-          </div>
-          <div class="card-body">
-            <span class="card-name">Retatrutida Injetável</span>
-            <span class="card-mg">4 mg</span>
-            <div class="card-meta">
-              <div class="card-meta-row">
-                <span class="card-meta-label">Marca</span>
-                <span class="card-meta-value">—</span>
-              </div>
-              <div class="card-meta-row">
-                <span class="card-meta-label">Lab</span>
-                <span class="card-meta-value">—</span>
-              </div>
+        <!-- Syndedica -->
+        <div class="binfo" id="bi-reta-syndedica">
+          <p class="binfo-desc">Formulação estabilizada para máxima eficácia e tolerabilidade. Inclui certificado de análise de pureza por HPLC, com rastreabilidade completa do lote.</p>
+          <div class="binfo-lab">
+            <div class="binfo-lab-icon" style="background:#ffe4e6;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#be123c" stroke-width="2" stroke-linecap="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
             </div>
-            <a href="https://wa.me/message/HTG3SXB7T5BMM1" class="card-cta">Consultar</a>
+            <div>
+              <div class="binfo-lab-name">Syndedica Labs International</div>
+              <div class="binfo-lab-sub">🇵🇾 Asunción, Paraguai · Cert. HPLC por lote</div>
+            </div>
           </div>
         </div>
 
-        <div class="card">
-          <div class="card-img">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
-            <span class="card-img-label">Foto</span>
-          </div>
-          <div class="card-body">
-            <span class="card-name">Retatrutida Injetável</span>
-            <span class="card-mg">8 mg</span>
-            <div class="card-meta">
-              <div class="card-meta-row">
-                <span class="card-meta-label">Marca</span>
-                <span class="card-meta-value">—</span>
-              </div>
-              <div class="card-meta-row">
-                <span class="card-meta-label">Lab</span>
-                <span class="card-meta-value">—</span>
-              </div>
-            </div>
-            <a href="https://wa.me/message/HTG3SXB7T5BMM1" class="card-cta">Consultar</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-img">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
-            <span class="card-img-label">Foto</span>
-          </div>
-          <div class="card-body">
-            <span class="card-name">Retatrutida Injetável</span>
-            <span class="card-mg">12 mg</span>
-            <div class="card-meta">
-              <div class="card-meta-row">
-                <span class="card-meta-label">Marca</span>
-                <span class="card-meta-value">—</span>
-              </div>
-              <div class="card-meta-row">
-                <span class="card-meta-label">Lab</span>
-                <span class="card-meta-value">—</span>
-              </div>
-            </div>
-            <a href="https://wa.me/message/HTG3SXB7T5BMM1" class="card-cta">Consultar</a>
-          </div>
-        </div>
-
+        <a href="https://wa.me/message/HTG3SXB7T5BMM1" class="pcard-cta">
+          <svg viewBox="0 0 32 32" fill="white"><path d="M16 3C8.82 3 3 8.82 3 16c0 2.35.65 4.56 1.78 6.45L3 29l6.77-1.76A13 13 0 0 0 16 29c7.18 0 13-5.82 13-13S23.18 3 16 3zm5.92 16.59c-.25.7-1.47 1.36-2.02 1.44-.5.08-1.16.11-1.87-.12-.43-.14-.99-.32-1.69-.63-2.97-1.28-4.9-4.27-5.05-4.47-.15-.2-1.2-1.6-1.2-3.04s.76-2.16 1.03-2.45c.27-.3.58-.37.78-.37l.56.01c.18 0 .43-.07.67.51.25.59.85 2.09.93 2.24.08.15.13.32.03.5-.1.19-.15.3-.3.47-.16.16-.33.36-.47.48-.16.13-.32.27-.14.54.19.27.81 1.2 1.74 1.94 1.19 1 2.21 1.31 2.53 1.45.32.14.5.12.69-.07.19-.19.78-.91 1-1.24.21-.32.43-.26.72-.16.29.1 1.86.88 2.18 1.04.32.16.54.24.62.37.08.14.08.77-.17 1.46z"/></svg>
+          Consultar via WhatsApp
+        </a>
       </div>
-    </section>
+    </div>
 
-    <div class="section-divider"></div>
-
-    <!-- ── PEPTÍDEOS ── -->
-    <section class="section" id="peptideos">
-      <div class="section-header">
-        <div class="section-title-group">
-          <span class="section-eyebrow">Bioativos</span>
-          <span class="section-title">Peptídeos</span>
+    <!-- ─── CARD 3: PEPTÍDEOS ─── -->
+    <div class="pcard" id="c-pept">
+      <div class="pcard-visual" id="v-pept" style="background-color:#0e1f30;">
+        <div class="pcard-origin-badge"><span>🇵🇾</span> Paraguai</div>
+        <div class="pcard-type-badge">Bioativo</div>
+        <div class="vial-wrap">
+          <div class="vial-cap" id="vc-pept" style="background:#1d4ed8;"></div>
+          <div class="vial-neck" id="vn-pept" style="background:rgba(29,78,216,.55);"></div>
+          <div class="vial-body" id="vb-pept" style="border-color:#1d4ed8;">
+            <div class="vial-liquid" id="vl-pept" style="background:rgba(29,78,216,.22);"></div>
+            <div class="vial-shine"></div>
+            <div class="vial-label">
+              <span class="vial-label-brand" id="vlb-pept" style="color:#1d4ed8;">GHC-KU</span>
+              <div class="vial-label-line">Peptídeo</div>
+              <div class="vial-label-mg" id="vlm-pept">Injetável</div>
+            </div>
+          </div>
         </div>
-        <span class="section-count">4 itens</span>
       </div>
-      <div class="cards-grid">
+      <div class="pcard-body">
+        <div class="pcard-category">Peptídeos Bioativos</div>
+        <div class="pcard-name">Peptídeos</div>
 
-        <div class="card">
-          <div class="card-img">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
-            <span class="card-img-label">Foto</span>
-          </div>
-          <div class="card-body">
-            <span class="card-name">BPC-157</span>
-            <span class="card-mg">—</span>
-            <div class="card-meta">
-              <div class="card-meta-row">
-                <span class="card-meta-label">Marca</span>
-                <span class="card-meta-value">—</span>
-              </div>
-              <div class="card-meta-row">
-                <span class="card-meta-label">Lab</span>
-                <span class="card-meta-value">—</span>
-              </div>
+        <div class="brand-sel">
+          <button class="bbtn act" style="background:#1d4ed8;" onclick="sw('pept','ghcku',this)">GHC-KU</button>
+          <button class="bbtn" onclick="sw('pept','klu',this)">KLU</button>
+        </div>
+
+        <!-- GHC-KU -->
+        <div class="binfo act" id="bi-pept-ghcku">
+          <p class="binfo-desc">Peptídeo bioativo de alta especificidade com atuação precisa em receptores-alvo. Sintetizado em ambiente estéril com grau de pureza ≥98% garantido em laudo.</p>
+          <div class="binfo-lab">
+            <div class="binfo-lab-icon" style="background:#dbeafe;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="2" stroke-linecap="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
             </div>
-            <a href="https://wa.me/message/HTG3SXB7T5BMM1" class="card-cta">Consultar</a>
+            <div>
+              <div class="binfo-lab-name">GHC Peptide Sciences</div>
+              <div class="binfo-lab-sub">🇵🇾 Asunción, Paraguai · Pureza ≥98%</div>
+            </div>
           </div>
         </div>
 
-        <div class="card">
-          <div class="card-img">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
-            <span class="card-img-label">Foto</span>
-          </div>
-          <div class="card-body">
-            <span class="card-name">TB-500</span>
-            <span class="card-mg">—</span>
-            <div class="card-meta">
-              <div class="card-meta-row">
-                <span class="card-meta-label">Marca</span>
-                <span class="card-meta-value">—</span>
-              </div>
-              <div class="card-meta-row">
-                <span class="card-meta-label">Lab</span>
-                <span class="card-meta-value">—</span>
-              </div>
+        <!-- KLU -->
+        <div class="binfo" id="bi-pept-klu">
+          <p class="binfo-desc">Sequência peptídica otimizada para máxima estabilidade e absorção. Processo de síntese certificado com rastreabilidade completa do lote e cadeia de frio assegurada.</p>
+          <div class="binfo-lab">
+            <div class="binfo-lab-icon" style="background:#d1fae5;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#065f46" stroke-width="2" stroke-linecap="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
             </div>
-            <a href="https://wa.me/message/HTG3SXB7T5BMM1" class="card-cta">Consultar</a>
+            <div>
+              <div class="binfo-lab-name">KLU BioTech International</div>
+              <div class="binfo-lab-sub">🇵🇾 Asunción, Paraguai · Cadeia de frio cert.</div>
+            </div>
           </div>
         </div>
 
-        <div class="card">
-          <div class="card-img">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
-            <span class="card-img-label">Foto</span>
-          </div>
-          <div class="card-body">
-            <span class="card-name">CJC-1295</span>
-            <span class="card-mg">—</span>
-            <div class="card-meta">
-              <div class="card-meta-row">
-                <span class="card-meta-label">Marca</span>
-                <span class="card-meta-value">—</span>
-              </div>
-              <div class="card-meta-row">
-                <span class="card-meta-label">Lab</span>
-                <span class="card-meta-value">—</span>
-              </div>
-            </div>
-            <a href="https://wa.me/message/HTG3SXB7T5BMM1" class="card-cta">Consultar</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-img">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
-            <span class="card-img-label">Foto</span>
-          </div>
-          <div class="card-body">
-            <span class="card-name">Ipamorelin</span>
-            <span class="card-mg">—</span>
-            <div class="card-meta">
-              <div class="card-meta-row">
-                <span class="card-meta-label">Marca</span>
-                <span class="card-meta-value">—</span>
-              </div>
-              <div class="card-meta-row">
-                <span class="card-meta-label">Lab</span>
-                <span class="card-meta-value">—</span>
-              </div>
-            </div>
-            <a href="https://wa.me/message/HTG3SXB7T5BMM1" class="card-cta">Consultar</a>
-          </div>
-        </div>
-
+        <a href="https://wa.me/message/HTG3SXB7T5BMM1" class="pcard-cta">
+          <svg viewBox="0 0 32 32" fill="white"><path d="M16 3C8.82 3 3 8.82 3 16c0 2.35.65 4.56 1.78 6.45L3 29l6.77-1.76A13 13 0 0 0 16 29c7.18 0 13-5.82 13-13S23.18 3 16 3zm5.92 16.59c-.25.7-1.47 1.36-2.02 1.44-.5.08-1.16.11-1.87-.12-.43-.14-.99-.32-1.69-.63-2.97-1.28-4.9-4.27-5.05-4.47-.15-.2-1.2-1.6-1.2-3.04s.76-2.16 1.03-2.45c.27-.3.58-.37.78-.37l.56.01c.18 0 .43-.07.67.51.25.59.85 2.09.93 2.24.08.15.13.32.03.5-.1.19-.15.3-.3.47-.16.16-.33.36-.47.48-.16.13-.32.27-.14.54.19.27.81 1.2 1.74 1.94 1.19 1 2.21 1.31 2.53 1.45.32.14.5.12.69-.07.19-.19.78-.91 1-1.24.21-.32.43-.26.72-.16.29.1 1.86.88 2.18 1.04.32.16.54.24.62.37.08.14.08.77-.17 1.46z"/></svg>
+          Consultar via WhatsApp
+        </a>
       </div>
-    </section>
+    </div>
 
-    <div class="section-divider"></div>
+  </div><!-- /cards-wrap -->
 
-    <!-- ── TESTOSTERONA ── -->
-    <section class="section" id="testosterona">
-      <div class="section-header">
-        <div class="section-title-group">
-          <span class="section-eyebrow">Hormônio</span>
-          <span class="section-title">Testosterona</span>
+  <!-- ══════════════════════════════
+       TRUST SECTION
+  ══════════════════════════════ -->
+  <section class="trust">
+    <div class="sec-eyebrow">Segurança</div>
+    <div class="sec-title">Como saber que é seguro?</div>
+    <div class="sec-desc">Cada embalagem possui múltiplas camadas de verificação de autenticidade.</div>
+
+    <div class="trust-grid">
+
+      <!-- QR Code -->
+      <div class="tcard">
+        <div class="qr-mini" aria-hidden="true">
+          <span class="b"></span><span class="b"></span><span class="b"></span><span class="w"></span><span class="b"></span><span class="b"></span><span class="b"></span>
+          <span class="b"></span><span class="w"></span><span class="b"></span><span class="w"></span><span class="b"></span><span class="w"></span><span class="b"></span>
+          <span class="b"></span><span class="b"></span><span class="b"></span><span class="w"></span><span class="b"></span><span class="b"></span><span class="b"></span>
+          <span class="w"></span><span class="w"></span><span class="w"></span><span class="b"></span><span class="w"></span><span class="b"></span><span class="w"></span>
+          <span class="b"></span><span class="w"></span><span class="b"></span><span class="w"></span><span class="b"></span><span class="b"></span><span class="w"></span>
+          <span class="b"></span><span class="b"></span><span class="w"></span><span class="w"></span><span class="w"></span><span class="b"></span><span class="b"></span>
+          <span class="w"></span><span class="b"></span><span class="b"></span><span class="b"></span><span class="w"></span><span class="b"></span><span class="w"></span>
         </div>
-        <span class="section-count">4 itens</span>
+        <div class="tcard-title">QR Code com Número de Lote</div>
+        <div class="tcard-desc">Cada embalagem tem QR único vinculado ao lote de produção. Escaneie e verifique a origem em segundos.</div>
       </div>
-      <div class="cards-grid">
 
-        <div class="card">
-          <div class="card-img">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
-            <span class="card-img-label">Foto</span>
-          </div>
-          <div class="card-body">
-            <span class="card-name">Testosterona Cipionato</span>
-            <span class="card-mg">—</span>
-            <div class="card-meta">
-              <div class="card-meta-row">
-                <span class="card-meta-label">Marca</span>
-                <span class="card-meta-value">—</span>
-              </div>
-              <div class="card-meta-row">
-                <span class="card-meta-label">Lab</span>
-                <span class="card-meta-value">—</span>
-              </div>
-            </div>
-            <a href="https://wa.me/message/HTG3SXB7T5BMM1" class="card-cta">Consultar</a>
-          </div>
+      <!-- Selo alto relevo -->
+      <div class="tcard">
+        <div class="seal-visual">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/>
+          </svg>
         </div>
-
-        <div class="card">
-          <div class="card-img">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
-            <span class="card-img-label">Foto</span>
-          </div>
-          <div class="card-body">
-            <span class="card-name">Testosterona Enantato</span>
-            <span class="card-mg">—</span>
-            <div class="card-meta">
-              <div class="card-meta-row">
-                <span class="card-meta-label">Marca</span>
-                <span class="card-meta-value">—</span>
-              </div>
-              <div class="card-meta-row">
-                <span class="card-meta-label">Lab</span>
-                <span class="card-meta-value">—</span>
-              </div>
-            </div>
-            <a href="https://wa.me/message/HTG3SXB7T5BMM1" class="card-cta">Consultar</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-img">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
-            <span class="card-img-label">Foto</span>
-          </div>
-          <div class="card-body">
-            <span class="card-name">Testosterona Propionato</span>
-            <span class="card-mg">—</span>
-            <div class="card-meta">
-              <div class="card-meta-row">
-                <span class="card-meta-label">Marca</span>
-                <span class="card-meta-value">—</span>
-              </div>
-              <div class="card-meta-row">
-                <span class="card-meta-label">Lab</span>
-                <span class="card-meta-value">—</span>
-              </div>
-            </div>
-            <a href="https://wa.me/message/HTG3SXB7T5BMM1" class="card-cta">Consultar</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-img">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
-            <span class="card-img-label">Foto</span>
-          </div>
-          <div class="card-body">
-            <span class="card-name">Testosterona Gel</span>
-            <span class="card-mg">—</span>
-            <div class="card-meta">
-              <div class="card-meta-row">
-                <span class="card-meta-label">Marca</span>
-                <span class="card-meta-value">—</span>
-              </div>
-              <div class="card-meta-row">
-                <span class="card-meta-label">Lab</span>
-                <span class="card-meta-value">—</span>
-              </div>
-            </div>
-            <a href="https://wa.me/message/HTG3SXB7T5BMM1" class="card-cta">Consultar</a>
-          </div>
-        </div>
-
+        <div class="tcard-title">Selo em Alto Relevo</div>
+        <div class="tcard-desc">Estampagem em relevo na caixa impossível de reproduzir. Toque e sinta a textura elevada — é a garantia de original.</div>
       </div>
-    </section>
 
-  </div><!-- /catalog -->
+      <!-- Luz UV -->
+      <div class="tcard">
+        <div class="tcard-icon" style="background:rgba(139,92,246,.2);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+        </div>
+        <div class="tcard-title">Verificação com Luz UV</div>
+        <div class="tcard-desc">Marcações de segurança invisíveis a olho nu na caixa. Sob luz ultravioleta ficam visíveis — autenticidade imediata.</div>
+        <div class="uv-badge"><div class="uv-dot"></div> UV Verified</div>
+      </div>
 
-  <footer>
-    © 2025 Acerte i Saúde Farma · Todos os direitos reservados
-  </footer>
+      <!-- Paraguai -->
+      <div class="tcard">
+        <div class="tcard-icon" style="background:rgba(34,163,85,.15);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+          </svg>
+        </div>
+        <div class="tcard-title">Produto do Paraguai</div>
+        <div class="tcard-desc">Importado diretamente de laboratórios certificados no Paraguai, com nota fiscal, declaração de importação e cadeia de custódia documentada.</div>
+      </div>
 
-  <!-- Floating WhatsApp Button -->
-  <a href="https://wa.me/message/HTG3SXB7T5BMM1" class="fab" aria-label="Falar no WhatsApp">
-    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M16 3C8.82 3 3 8.82 3 16c0 2.35.65 4.56 1.78 6.45L3 29l6.77-1.76A13 13 0 0 0 16 29c7.18 0 13-5.82 13-13S23.18 3 16 3zm5.92 16.59c-.25.7-1.47 1.36-2.02 1.44-.5.08-1.16.11-1.87-.12-.43-.14-.99-.32-1.69-.63-2.97-1.28-4.9-4.27-5.05-4.47-.15-.2-1.2-1.6-1.2-3.04s.76-2.16 1.03-2.45c.27-.3.58-.37.78-.37l.56.01c.18 0 .43-.07.67.51.25.59.85 2.09.93 2.24.08.15.13.32.03.5-.1.19-.15.3-.3.47-.16.16-.33.36-.47.48-.16.13-.32.27-.14.54.19.27.81 1.2 1.74 1.94 1.19 1 2.21 1.31 2.53 1.45.32.14.5.12.69-.07.19-.19.78-.91 1-1.24.21-.32.43-.26.72-.16.29.1 1.86.88 2.18 1.04.32.16.54.24.62.37.08.14.08.77-.17 1.46z" fill="white"/>
-    </svg>
-    Falar no WhatsApp
+    </div>
+  </section>
+
+  <footer>© 2025 Acerte i Saúde Farma · Todos os direitos reservados</footer>
+
+  <!-- FAB -->
+  <a href="https://wa.me/message/HTG3SXB7T5BMM1" class="fab" aria-label="WhatsApp">
+    <svg viewBox="0 0 32 32" fill="white" width="20" height="20"><path d="M16 3C8.82 3 3 8.82 3 16c0 2.35.65 4.56 1.78 6.45L3 29l6.77-1.76A13 13 0 0 0 16 29c7.18 0 13-5.82 13-13S23.18 3 16 3zm5.92 16.59c-.25.7-1.47 1.36-2.02 1.44-.5.08-1.16.11-1.87-.12-.43-.14-.99-.32-1.69-.63-2.97-1.28-4.9-4.27-5.05-4.47-.15-.2-1.2-1.6-1.2-3.04s.76-2.16 1.03-2.45c.27-.3.58-.37.78-.37l.56.01c.18 0 .43-.07.67.51.25.59.85 2.09.93 2.24.08.15.13.32.03.5-.1.19-.15.3-.3.47-.16.16-.33.36-.47.48-.16.13-.32.27-.14.54.19.27.81 1.2 1.74 1.94 1.19 1 2.21 1.31 2.53 1.45.32.14.5.12.69-.07.19-.19.78-.91 1-1.24.21-.32.43-.26.72-.16.29.1 1.86.88 2.18 1.04.32.16.54.24.62.37.08.14.08.77-.17 1.46z"/></svg>
+    WhatsApp
   </a>
 
   <script>
-    function toggleTheme() {
-      const root = document.documentElement;
-      const icon = document.getElementById('theme-icon');
-      const current = root.getAttribute('data-theme');
-      if (current === 'dark') {
-        root.setAttribute('data-theme', 'light');
-        icon.textContent = '☀️';
-      } else {
-        root.setAttribute('data-theme', 'dark');
-        icon.textContent = '🌙';
+    /* ── Brand data ── */
+    const brands = {
+      tirz: {
+        tg:      { color:'#1e40af', bg:'#0f2a4a', neck:'rgba(30,64,175,.55)',  liquid:'rgba(30,64,175,.22)'  },
+        tirzec:  { color:'#6d28d9', bg:'#1a0f3a', neck:'rgba(109,40,217,.55)', liquid:'rgba(109,40,217,.22)' },
+        lipoless:{ color:'#c2410c', bg:'#2a1206', neck:'rgba(194,65,12,.55)',  liquid:'rgba(194,65,12,.22)'  }
+      },
+      reta: {
+        veltrane: { color:'#0e7490', bg:'#0e2a2e', neck:'rgba(14,116,144,.55)',  liquid:'rgba(14,116,144,.22)'  },
+        syndedica:{ color:'#be123c', bg:'#2d0616', neck:'rgba(190,18,60,.55)',   liquid:'rgba(190,18,60,.22)'   }
+      },
+      pept: {
+        ghcku: { color:'#1d4ed8', bg:'#0e1f30', neck:'rgba(29,78,216,.55)',  liquid:'rgba(29,78,216,.22)'  },
+        klu:   { color:'#065f46', bg:'#031a12', neck:'rgba(6,95,70,.55)',     liquid:'rgba(6,95,70,.22)'    }
       }
+    };
+
+    function sw(card, brandId, btn) {
+      const b = brands[card][brandId];
+
+      /* update visual area */
+      document.getElementById('v-'+card).style.backgroundColor = b.bg;
+      document.getElementById('vc-'+card).style.backgroundColor = b.color;
+      document.getElementById('vn-'+card).style.backgroundColor = b.neck;
+      const vb = document.getElementById('vb-'+card);
+      vb.style.borderColor = b.color;
+      document.getElementById('vl-'+card).style.backgroundColor = b.liquid;
+      const vlbl = document.getElementById('vlb-'+card);
+      vlbl.textContent = btn.textContent;
+      vlbl.style.color = b.color;
+
+      /* update brand buttons */
+      btn.closest('.brand-sel').querySelectorAll('.bbtn').forEach(b2 => {
+        b2.classList.remove('act');
+        b2.style.background = '';
+      });
+      btn.classList.add('act');
+      btn.style.background = b.color;
+
+      /* update info panels */
+      document.getElementById('c-'+card).querySelectorAll('.binfo').forEach(p => p.classList.remove('act'));
+      document.getElementById('bi-'+card+'-'+brandId).classList.add('act');
     }
 
-    // Sync icon with OS preference on load
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      document.getElementById('theme-icon').textContent = '🌙';
+    function swMg(card, mg, btn) {
+      btn.closest('.mg-sel').querySelectorAll('.mgbtn').forEach(b => b.classList.remove('act'));
+      btn.classList.add('act');
+      document.getElementById('vlm-'+card).textContent = mg;
     }
-
-    // Smooth scroll for nav pills
-    document.querySelectorAll('.pill').forEach(pill => {
-      pill.addEventListener('click', function(e) {
-        document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
-        this.classList.add('active');
-      });
-    });
-
-    // Highlight active nav on scroll
-    const sections = document.querySelectorAll('section[id]');
-    const pills = document.querySelectorAll('.pill');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          pills.forEach(p => p.classList.remove('active'));
-          const active = document.querySelector(`.pill[href="#${entry.target.id}"]`);
-          if (active) active.classList.add('active');
-        }
-      });
-    }, { rootMargin: '-30% 0px -60% 0px' });
-    sections.forEach(s => observer.observe(s));
   </script>
+
 </body>
 </html>
