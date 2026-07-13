@@ -203,14 +203,15 @@
       background: rgba(255,255,255,.28);
     }
     .vial-label {
-      position: absolute; top: 20px; left: 9px; right: 9px;
+      position: absolute; top: 20px; left: 5px; right: 5px;
       background: rgba(255,255,255,.93);
-      border-radius: 5px; padding: 7px 5px 6px;
-      text-align: center;
+      border-radius: 5px; padding: 7px 4px 6px;
+      text-align: center; overflow: hidden;
     }
     .vial-label-brand {
-      font-size: 12px; font-weight: 900; letter-spacing: .4px;
+      font-size: 10.5px; font-weight: 900; letter-spacing: 0;
       transition: color .4s; display: block; line-height: 1;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
     .vial-label-line {
       font-size: 8.5px; color: #777; font-weight: 600; margin-top: 3px;
@@ -438,17 +439,17 @@
 
     <!-- ─── CARD 1: TIRZEPATIDA ─── -->
     <div class="pcard" id="c-tirz">
-      <div class="pcard-visual" id="v-tirz" style="background-color:#0f2a4a;">
+      <div class="pcard-visual" id="v-tirz" style="background-color:#2a1506;">
         <div class="pcard-origin-badge"><span>🇵🇾</span> Paraguai</div>
         <div class="pcard-type-badge">GLP-1 / GIP</div>
         <div class="vial-wrap">
-          <div class="vial-cap" id="vc-tirz" style="background:#1e40af;"></div>
-          <div class="vial-neck" id="vn-tirz" style="background:rgba(30,64,175,.55);"></div>
-          <div class="vial-body" id="vb-tirz" style="border-color:#1e40af;">
-            <div class="vial-liquid" id="vl-tirz" style="background:rgba(30,64,175,.22);"></div>
+          <div class="vial-cap" id="vc-tirz" style="background:#ea580c;"></div>
+          <div class="vial-neck" id="vn-tirz" style="background:rgba(234,88,12,.55);"></div>
+          <div class="vial-body" id="vb-tirz" style="border-color:#ea580c;">
+            <div class="vial-liquid" id="vl-tirz" style="background:rgba(234,88,12,.28);"></div>
             <div class="vial-shine"></div>
             <div class="vial-label">
-              <span class="vial-label-brand" id="vlb-tirz" style="color:#1e40af;">TG</span>
+              <span class="vial-label-brand" id="vlb-tirz" style="color:#ea580c;">TG</span>
               <div class="vial-label-line">Tirzepatida</div>
               <div class="vial-label-mg" id="vlm-tirz">15 mg</div>
             </div>
@@ -460,7 +461,7 @@
         <div class="pcard-name">Tirzepatida</div>
 
         <div class="brand-sel">
-          <button class="bbtn act" style="background:#1e40af;" onclick="sw('tirz','tg',this)">TG</button>
+          <button class="bbtn act" style="background:#ea580c;" onclick="sw('tirz','tg',this)">TG</button>
           <button class="bbtn" onclick="sw('tirz','tirzec',this)">Tirzec</button>
           <button class="bbtn" onclick="sw('tirz','lipoless',this)">Lipoless</button>
         </div>
@@ -474,8 +475,8 @@
         <div class="binfo act" id="bi-tirz-tg">
           <p class="binfo-desc">Tirzepatida premium com alta pureza e estabilidade comprovada em análise laboratorial. Eficaz no controle glicêmico e no manejo do peso corporal.</p>
           <div class="binfo-lab">
-            <div class="binfo-lab-icon" style="background:#dbeafe;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#1e40af" stroke-width="2" stroke-linecap="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
+            <div class="binfo-lab-icon" style="background:#ffedd5;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2" stroke-linecap="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
             </div>
             <div>
               <div class="binfo-lab-name">TG Pharma Laboratory</div>
@@ -729,9 +730,9 @@
     /* ── Brand data ── */
     const brands = {
       tirz: {
-        tg:      { color:'#1e40af', bg:'#0f2a4a', neck:'rgba(30,64,175,.55)',  liquid:'rgba(30,64,175,.22)'  },
-        tirzec:  { color:'#6d28d9', bg:'#1a0f3a', neck:'rgba(109,40,217,.55)', liquid:'rgba(109,40,217,.22)' },
-        lipoless:{ color:'#c2410c', bg:'#2a1206', neck:'rgba(194,65,12,.55)',  liquid:'rgba(194,65,12,.22)'  }
+        tg:      { color:'#ea580c', bg:'#2a1506', neck:'rgba(234,88,12,.55)',   liquid:'rgba(234,88,12,.28)'   },
+        tirzec:  { color:'#1d4ed8', bg:'#0c1a3a', neck:'rgba(29,78,216,.55)',   liquid:'rgba(202,138,4,.45)'   },
+        lipoless:{ color:'#1e3a8a', bg:'#0a1428', neck:'rgba(30,58,138,.55)',   liquid:'rgba(234,88,12,.35)'   }
       },
       reta: {
         veltrane: { color:'#0e7490', bg:'#0e2a2e', neck:'rgba(14,116,144,.55)',  liquid:'rgba(14,116,144,.22)'  },
