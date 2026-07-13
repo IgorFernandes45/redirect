@@ -283,6 +283,94 @@
     .pcard-cta svg { width: 17px; height: 17px; }
 
     /* ═══════════════════════════════════
+       RESULTS SECTION
+    ═══════════════════════════════════ */
+    .results {
+      padding: 40px 20px 36px;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+    }
+    .results .sec-header { padding: 0 0 20px; }
+
+    .result-cards { display: flex; flex-direction: column; gap: 16px; }
+
+    .rcard {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .rcard-photos {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      position: relative;
+      height: 220px;
+    }
+    .rcard-photo {
+      position: relative;
+      overflow: hidden;
+      background: #e8ede9;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .rcard-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: top;
+      display: block;
+    }
+    .rcard-photo-placeholder {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 6px;
+      width: 100%; height: 100%;
+      color: #b0c4b8;
+    }
+    .rcard-photo-placeholder svg { width: 28px; height: 28px; }
+    .rcard-photo-placeholder span { font-size: 10px; font-weight: 600; letter-spacing: .3px; }
+    .rcard-photo-label {
+      position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%);
+      background: rgba(0,0,0,.55); backdrop-filter: blur(4px);
+      color: #fff; font-size: 9.5px; font-weight: 700;
+      padding: 3px 9px; border-radius: 20px;
+      white-space: nowrap; letter-spacing: .3px;
+    }
+    .rcard-divider {
+      position: absolute; left: 50%; top: 0; bottom: 0;
+      width: 2px; background: #fff; z-index: 2;
+      transform: translateX(-50%);
+    }
+    .rcard-divider-badge {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--accent); color: #fff;
+      font-size: 9px; font-weight: 800;
+      padding: 4px 7px; border-radius: 20px;
+      z-index: 3; letter-spacing: .4px;
+      white-space: nowrap; border: 2px solid #fff;
+    }
+    .rcard-info {
+      padding: 13px 14px 14px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .rcard-avatar {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: var(--accent-light, #e6f0e9);
+      border: 2px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; flex-shrink: 0;
+      overflow: hidden;
+    }
+    .rcard-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .rcard-name { font-size: 13px; font-weight: 700; color: var(--text); }
+    .rcard-meta { font-size: 11.5px; color: var(--muted); margin-top: 1px; }
+    .rcard-tag {
+      margin-left: auto; flex-shrink: 0;
+      background: #e6f0e9; color: var(--accent);
+      font-size: 10px; font-weight: 700;
+      padding: 4px 9px; border-radius: 20px;
+      letter-spacing: .3px;
+    }
+
+    /* ═══════════════════════════════════
        TRUST SECTION
     ═══════════════════════════════════ */
     .trust {
@@ -479,8 +567,8 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2" stroke-linecap="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
             </div>
             <div>
-              <div class="binfo-lab-name">TG Pharma Laboratory</div>
-              <div class="binfo-lab-sub">🇵🇾 Asunción, Paraguai · Laudo HPLC incluso</div>
+              <div class="binfo-lab-name">Indufar CISA</div>
+              <div class="binfo-lab-sub">🇵🇾 Asunción, Paraguai · Indústria Farmacêutica</div>
             </div>
           </div>
         </div>
@@ -493,8 +581,8 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="#6d28d9" stroke-width="2" stroke-linecap="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
             </div>
             <div>
-              <div class="binfo-lab-name">Tirzec Laboratories</div>
-              <div class="binfo-lab-sub">🇵🇾 Asunción, Paraguai · Certificado de análise</div>
+              <div class="binfo-lab-name">Quimfa S.A.</div>
+              <div class="binfo-lab-sub">🇵🇾 Av. Primer Presidente 1736, Asunción</div>
             </div>
           </div>
         </div>
@@ -507,8 +595,8 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="#c2410c" stroke-width="2" stroke-linecap="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
             </div>
             <div>
-              <div class="binfo-lab-name">Lipoless Pharma S.A.</div>
-              <div class="binfo-lab-sub">🇵🇾 Asunción, Paraguai · Pureza ≥99%</div>
+              <div class="binfo-lab-name">Laboratorio Eticos</div>
+              <div class="binfo-lab-sub">🇵🇾 Paraguai · +40 anos · Autorizado DINAVISA</div>
             </div>
           </div>
         </div>
@@ -556,8 +644,8 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="#0e7490" stroke-width="2" stroke-linecap="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
             </div>
             <div>
-              <div class="binfo-lab-name">Veltrane BioPharma</div>
-              <div class="binfo-lab-sub">🇵🇾 Asunción, Paraguai · Laudo de pureza incluso</div>
+              <div class="binfo-lab-name">Veltrane Gold</div>
+              <div class="binfo-lab-sub">🇵🇾 Paraguai · Triplo agonista GLP-1/GIP/Glucagon</div>
             </div>
           </div>
         </div>
@@ -570,8 +658,8 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="#be123c" stroke-width="2" stroke-linecap="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
             </div>
             <div>
-              <div class="binfo-lab-name">Syndedica Labs International</div>
-              <div class="binfo-lab-sub">🇵🇾 Asunción, Paraguai · Cert. HPLC por lote</div>
+              <div class="binfo-lab-name">Synedica</div>
+              <div class="binfo-lab-sub">🇵🇾 Paraguai · 40mg · Caneta injetável</div>
             </div>
           </div>
         </div>
@@ -647,6 +735,116 @@
     </div>
 
   </div><!-- /cards-wrap -->
+
+  <!-- ══════════════════════════════
+       RESULTS SECTION
+  ══════════════════════════════ -->
+  <section class="results">
+    <div class="sec-header">
+      <div class="sec-eyebrow">Transformações</div>
+      <div class="sec-title">Resultados Reais</div>
+      <div class="sec-desc">Fotos enviadas por clientes com autorização. Resultados individuais podem variar.</div>
+    </div>
+
+    <div class="result-cards">
+
+      <!-- Resultado 1 -->
+      <div class="rcard">
+        <div class="rcard-photos">
+          <div class="rcard-photo">
+            <!-- Substitua por: <img src="resultado1-antes.webp" alt="Antes"> -->
+            <div class="rcard-photo-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+              <span>Foto antes</span>
+            </div>
+            <div class="rcard-photo-label">Antes</div>
+          </div>
+          <div class="rcard-photo">
+            <!-- Substitua por: <img src="resultado1-depois.webp" alt="Depois"> -->
+            <div class="rcard-photo-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+              <span>Foto depois</span>
+            </div>
+            <div class="rcard-photo-label">Depois</div>
+          </div>
+          <div class="rcard-divider">
+            <div class="rcard-divider-badge">VS</div>
+          </div>
+        </div>
+        <div class="rcard-info">
+          <div class="rcard-avatar">😊</div>
+          <div>
+            <div class="rcard-name">Cliente 1</div>
+            <div class="rcard-meta">Tempo de uso · Produto utilizado</div>
+          </div>
+          <div class="rcard-tag">Tirzepatida</div>
+        </div>
+      </div>
+
+      <!-- Resultado 2 -->
+      <div class="rcard">
+        <div class="rcard-photos">
+          <div class="rcard-photo">
+            <div class="rcard-photo-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+              <span>Foto antes</span>
+            </div>
+            <div class="rcard-photo-label">Antes</div>
+          </div>
+          <div class="rcard-photo">
+            <div class="rcard-photo-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+              <span>Foto depois</span>
+            </div>
+            <div class="rcard-photo-label">Depois</div>
+          </div>
+          <div class="rcard-divider">
+            <div class="rcard-divider-badge">VS</div>
+          </div>
+        </div>
+        <div class="rcard-info">
+          <div class="rcard-avatar">🙂</div>
+          <div>
+            <div class="rcard-name">Cliente 2</div>
+            <div class="rcard-meta">Tempo de uso · Produto utilizado</div>
+          </div>
+          <div class="rcard-tag">Retatrutida</div>
+        </div>
+      </div>
+
+      <!-- Resultado 3 -->
+      <div class="rcard">
+        <div class="rcard-photos">
+          <div class="rcard-photo">
+            <div class="rcard-photo-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+              <span>Foto antes</span>
+            </div>
+            <div class="rcard-photo-label">Antes</div>
+          </div>
+          <div class="rcard-photo">
+            <div class="rcard-photo-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+              <span>Foto depois</span>
+            </div>
+            <div class="rcard-photo-label">Depois</div>
+          </div>
+          <div class="rcard-divider">
+            <div class="rcard-divider-badge">VS</div>
+          </div>
+        </div>
+        <div class="rcard-info">
+          <div class="rcard-avatar">😄</div>
+          <div>
+            <div class="rcard-name">Cliente 3</div>
+            <div class="rcard-meta">Tempo de uso · Produto utilizado</div>
+          </div>
+          <div class="rcard-tag">Peptídeos</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
 
   <!-- ══════════════════════════════
        TRUST SECTION
