@@ -338,9 +338,40 @@
     }
     .results .sec-header { padding: 0 4px 20px; }
 
-    .result-cards { display: flex; flex-direction: column; gap: 18px; }
+    /* carousel wrapper */
+    .result-carousel-wrap {
+      margin: 0 -16px;
+      overflow: hidden;
+    }
+    .result-track {
+      display: flex;
+      gap: 10px;
+      padding: 4px 16px 8px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .result-track::-webkit-scrollbar { display: none; }
+
+    .carousel-dots {
+      display: flex; gap: 6px;
+      justify-content: center;
+      padding: 14px 0 6px;
+    }
+    .cdot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--border); cursor: pointer;
+      transition: width .25s, background .25s, border-radius .25s;
+    }
+    .cdot.act {
+      width: 20px; border-radius: 3px;
+      background: var(--accent);
+    }
 
     .rcard {
+      flex: 0 0 calc(100vw - 56px);
+      scroll-snap-align: start;
       background: var(--bg);
       border: 1px solid var(--border);
       border-radius: var(--radius);
@@ -351,15 +382,15 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       position: relative;
-      height: 260px;
+      height: 420px;
     }
     .rcard-photo {
       position: relative; overflow: hidden;
-      background: #d8e4da;
+      background: #d0dbd2;
     }
     .rcard-photo img {
       width: 100%; height: 100%;
-      object-fit: cover; object-position: center top;
+      object-fit: cover; object-position: center 20%;
       display: block;
     }
     .rcard-photo-label {
@@ -828,133 +859,143 @@
       <div class="sec-desc">Fotos enviadas por clientes com autorização. Resultados individuais podem variar.</div>
     </div>
 
-    <div class="result-cards">
+    <div class="result-carousel-wrap">
+      <div class="result-track" id="rtrack">
 
-      <!-- Resultado 1 — 18 kg em 4 meses -->
-      <div class="rcard">
-        <div class="rcard-photos">
-          <div class="rcard-photo">
-            <img src="images/antes-1.webp" alt="Antes — Cliente 1" loading="lazy">
-            <div class="rcard-photo-label">Antes</div>
+        <!-- Resultado 1 — 18 kg em 4 meses -->
+        <div class="rcard">
+          <div class="rcard-photos">
+            <div class="rcard-photo">
+              <img src="images/antes-1.webp" alt="Antes — Cliente 1" loading="lazy">
+              <div class="rcard-photo-label">Antes</div>
+            </div>
+            <div class="rcard-photo">
+              <img src="images/depois-1.webp" alt="Depois — Cliente 1" loading="lazy">
+              <div class="rcard-photo-label">Depois</div>
+            </div>
+            <div class="rcard-divider"></div>
+            <div class="rcard-vs">VS</div>
+            <div class="rcard-result-badge">−18 kg<br><span style="font-size:9px;font-weight:600;opacity:.9">4 meses</span></div>
           </div>
-          <div class="rcard-photo">
-            <img src="images/depois-1.webp" alt="Depois — Cliente 1" loading="lazy">
-            <div class="rcard-photo-label">Depois</div>
+          <div class="rcard-info">
+            <div class="rcard-icon">💪</div>
+            <div>
+              <div class="rcard-name">Cliente 1</div>
+              <div class="rcard-meta">18 kg perdidos · 4 meses de uso</div>
+            </div>
+            <div class="rcard-tag">Tirzepatida</div>
           </div>
-          <div class="rcard-divider"></div>
-          <div class="rcard-vs">VS</div>
-          <div class="rcard-result-badge">−18 kg<br><span style="font-size:9px;font-weight:600;opacity:.9">4 meses</span></div>
         </div>
-        <div class="rcard-info">
-          <div class="rcard-icon">💪</div>
-          <div>
-            <div class="rcard-name">Cliente 1</div>
-            <div class="rcard-meta">18 kg perdidos · 4 meses de uso</div>
-          </div>
-          <div class="rcard-tag">Tirzepatida</div>
-        </div>
-      </div>
 
-      <!-- Resultado 2 -->
-      <div class="rcard">
-        <div class="rcard-photos">
-          <div class="rcard-photo">
-            <img src="images/antes-2.webp" alt="Antes — Cliente 2" loading="lazy">
-            <div class="rcard-photo-label">Antes</div>
+        <!-- Resultado 2 -->
+        <div class="rcard">
+          <div class="rcard-photos">
+            <div class="rcard-photo">
+              <img src="images/antes-2.webp" alt="Antes — Cliente 2" loading="lazy">
+              <div class="rcard-photo-label">Antes</div>
+            </div>
+            <div class="rcard-photo">
+              <img src="images/depois-2.webp" alt="Depois — Cliente 2" loading="lazy">
+              <div class="rcard-photo-label">Depois</div>
+            </div>
+            <div class="rcard-divider"></div>
+            <div class="rcard-vs">VS</div>
+            <div class="rcard-result-badge">Em breve</div>
           </div>
-          <div class="rcard-photo">
-            <img src="images/depois-2.webp" alt="Depois — Cliente 2" loading="lazy">
-            <div class="rcard-photo-label">Depois</div>
+          <div class="rcard-info">
+            <div class="rcard-icon">⭐</div>
+            <div>
+              <div class="rcard-name">Cliente 2</div>
+              <div class="rcard-meta">Resultado em atualização</div>
+            </div>
+            <div class="rcard-tag">Tirzepatida</div>
           </div>
-          <div class="rcard-divider"></div>
-          <div class="rcard-vs">VS</div>
-          <div class="rcard-result-badge">Em breve</div>
         </div>
-        <div class="rcard-info">
-          <div class="rcard-icon">⭐</div>
-          <div>
-            <div class="rcard-name">Cliente 2</div>
-            <div class="rcard-meta">Resultado em atualização</div>
-          </div>
-          <div class="rcard-tag">Tirzepatida</div>
-        </div>
-      </div>
 
-      <!-- Resultado 3 -->
-      <div class="rcard">
-        <div class="rcard-photos">
-          <div class="rcard-photo">
-            <img src="images/antes-3.webp" alt="Antes — Cliente 3" loading="lazy">
-            <div class="rcard-photo-label">Antes</div>
+        <!-- Resultado 3 -->
+        <div class="rcard">
+          <div class="rcard-photos">
+            <div class="rcard-photo">
+              <img src="images/antes-3.webp" alt="Antes — Cliente 3" loading="lazy">
+              <div class="rcard-photo-label">Antes</div>
+            </div>
+            <div class="rcard-photo">
+              <img src="images/depois-3.webp" alt="Depois — Cliente 3" loading="lazy">
+              <div class="rcard-photo-label">Depois</div>
+            </div>
+            <div class="rcard-divider"></div>
+            <div class="rcard-vs">VS</div>
+            <div class="rcard-result-badge">Em breve</div>
           </div>
-          <div class="rcard-photo">
-            <img src="images/depois-3.webp" alt="Depois — Cliente 3" loading="lazy">
-            <div class="rcard-photo-label">Depois</div>
+          <div class="rcard-info">
+            <div class="rcard-icon">🔥</div>
+            <div>
+              <div class="rcard-name">Cliente 3</div>
+              <div class="rcard-meta">Resultado em atualização</div>
+            </div>
+            <div class="rcard-tag">Tirzepatida</div>
           </div>
-          <div class="rcard-divider"></div>
-          <div class="rcard-vs">VS</div>
-          <div class="rcard-result-badge">Em breve</div>
         </div>
-        <div class="rcard-info">
-          <div class="rcard-icon">🔥</div>
-          <div>
-            <div class="rcard-name">Cliente 3</div>
-            <div class="rcard-meta">Resultado em atualização</div>
-          </div>
-          <div class="rcard-tag">Tirzepatida</div>
-        </div>
-      </div>
 
-      <!-- Resultado 4 -->
-      <div class="rcard">
-        <div class="rcard-photos">
-          <div class="rcard-photo">
-            <img src="images/antes-4.webp" alt="Antes — Cliente 4" loading="lazy">
-            <div class="rcard-photo-label">Antes</div>
+        <!-- Resultado 4 -->
+        <div class="rcard">
+          <div class="rcard-photos">
+            <div class="rcard-photo">
+              <img src="images/antes-4.webp" alt="Antes — Cliente 4" loading="lazy">
+              <div class="rcard-photo-label">Antes</div>
+            </div>
+            <div class="rcard-photo">
+              <img src="images/depois-4.webp" alt="Depois — Cliente 4" loading="lazy">
+              <div class="rcard-photo-label">Depois</div>
+            </div>
+            <div class="rcard-divider"></div>
+            <div class="rcard-vs">VS</div>
+            <div class="rcard-result-badge">Em breve</div>
           </div>
-          <div class="rcard-photo">
-            <img src="images/depois-4.webp" alt="Depois — Cliente 4" loading="lazy">
-            <div class="rcard-photo-label">Depois</div>
+          <div class="rcard-info">
+            <div class="rcard-icon">🌟</div>
+            <div>
+              <div class="rcard-name">Cliente 4</div>
+              <div class="rcard-meta">Resultado em atualização</div>
+            </div>
+            <div class="rcard-tag">Tirzepatida</div>
           </div>
-          <div class="rcard-divider"></div>
-          <div class="rcard-vs">VS</div>
-          <div class="rcard-result-badge">Em breve</div>
         </div>
-        <div class="rcard-info">
-          <div class="rcard-icon">🌟</div>
-          <div>
-            <div class="rcard-name">Cliente 4</div>
-            <div class="rcard-meta">Resultado em atualização</div>
-          </div>
-          <div class="rcard-tag">Tirzepatida</div>
-        </div>
-      </div>
 
-      <!-- Resultado 5 -->
-      <div class="rcard">
-        <div class="rcard-photos">
-          <div class="rcard-photo">
-            <img src="images/antes-5.webp" alt="Antes — Cliente 5" loading="lazy">
-            <div class="rcard-photo-label">Antes</div>
+        <!-- Resultado 5 -->
+        <div class="rcard">
+          <div class="rcard-photos">
+            <div class="rcard-photo">
+              <img src="images/antes-5.webp" alt="Antes — Cliente 5" loading="lazy">
+              <div class="rcard-photo-label">Antes</div>
+            </div>
+            <div class="rcard-photo">
+              <img src="images/depois-5.webp" alt="Depois — Cliente 5" loading="lazy">
+              <div class="rcard-photo-label">Depois</div>
+            </div>
+            <div class="rcard-divider"></div>
+            <div class="rcard-vs">VS</div>
+            <div class="rcard-result-badge">Em breve</div>
           </div>
-          <div class="rcard-photo">
-            <img src="images/depois-5.webp" alt="Depois — Cliente 5" loading="lazy">
-            <div class="rcard-photo-label">Depois</div>
+          <div class="rcard-info">
+            <div class="rcard-icon">✨</div>
+            <div>
+              <div class="rcard-name">Cliente 5</div>
+              <div class="rcard-meta">Resultado em atualização</div>
+            </div>
+            <div class="rcard-tag">Tirzepatida</div>
           </div>
-          <div class="rcard-divider"></div>
-          <div class="rcard-vs">VS</div>
-          <div class="rcard-result-badge">Em breve</div>
         </div>
-        <div class="rcard-info">
-          <div class="rcard-icon">✨</div>
-          <div>
-            <div class="rcard-name">Cliente 5</div>
-            <div class="rcard-meta">Resultado em atualização</div>
-          </div>
-          <div class="rcard-tag">Tirzepatida</div>
-        </div>
-      </div>
 
+      </div><!-- /result-track -->
+    </div><!-- /result-carousel-wrap -->
+
+    <div class="carousel-dots" id="rdots">
+      <div class="cdot act"></div>
+      <div class="cdot"></div>
+      <div class="cdot"></div>
+      <div class="cdot"></div>
+      <div class="cdot"></div>
     </div>
 
     <!-- WhatsApp CTA after results -->
@@ -1092,6 +1133,32 @@
       btn.classList.add('act');
       document.getElementById('vlm-'+card).textContent = mg;
     }
+
+    /* ── Carousel dots ── */
+    (function() {
+      var track = document.getElementById('rtrack');
+      var dots  = document.querySelectorAll('#rdots .cdot');
+      if (!track || !dots.length) return;
+
+      function updateDots() {
+        var card = track.firstElementChild;
+        if (!card) return;
+        var step = card.offsetWidth + 10;
+        var idx  = Math.min(Math.round(track.scrollLeft / step), dots.length - 1);
+        dots.forEach(function(d, i) { d.classList.toggle('act', i === idx); });
+      }
+
+      track.addEventListener('scroll', updateDots, { passive: true });
+
+      dots.forEach(function(dot, i) {
+        dot.addEventListener('click', function() {
+          var card = track.firstElementChild;
+          if (!card) return;
+          var step = card.offsetWidth + 10;
+          track.scrollTo({ left: step * i, behavior: 'smooth' });
+        });
+      });
+    })();
 
     /* ── Stats counter animation ── */
     (function() {
